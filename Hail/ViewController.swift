@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WorldViewController: UIViewController {
 
+    //Begin Import things
     
+    @IBOutlet weak var walletCollectionView: UICollectionView!
+    
+    @IBOutlet weak var walletCollectionViewCell: walletReusableCell!
     
     
     override func viewDidLoad() {
@@ -26,3 +30,25 @@ class ViewController: UIViewController {
 
 }
 
+class walletCollectionView: UICollectionView {
+    
+}
+
+class walletReusableCell: UICollectionViewCell {
+    
+    //Begin Import things
+    
+    @IBOutlet weak var btcValueOverall: UILabel!
+    
+    @IBOutlet weak var fiatValueOverall: UILabel!
+    
+    @IBOutlet weak var btcValueRow1: UILabel!
+    
+    @IBOutlet weak var fiatValueRow1: UILabel!
+    
+    @IBOutlet weak var btcValueRow2: UILabel!
+    
+    @IBOutlet weak var fiatValueRow2: UILabel!
+    
+    
+}
