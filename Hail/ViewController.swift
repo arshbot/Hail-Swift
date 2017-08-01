@@ -14,8 +14,6 @@ class WorldViewController: UIViewController {
     
     @IBOutlet weak var walletCollectionView: UICollectionView!
     
-    @IBOutlet weak var walletCollectionViewCell: walletReusableCell!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +28,15 @@ class WorldViewController: UIViewController {
 
 }
 
-class walletCollectionView: UICollectionView {
+class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
     
 }
 
