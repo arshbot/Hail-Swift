@@ -15,6 +15,7 @@ class WorldViewController: UIViewController {
     @IBOutlet weak var walletCollectionView: UICollectionView!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,12 +31,27 @@ class WorldViewController: UIViewController {
 
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    
+    
+    let dataSrc = DataSource(coin: "All")
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return dataSrc.getNumberOfWallets()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
+        
+        let wallet = dataSrc.getWalletAtPosition(index: indexPath.row)
+        
+        cell.btcValueOverall.text = indexPath.row.description
+        cell.fiatValueOverall.text = indexPath.row.description
+        cell.btcValueRow1.text = indexPath.row.description
+        cell.fiatValueRow1.text = indexPath.row.description
+        cell.btcValueRow2.text = indexPath.row.description
+        cell.fiatValueRow2.text = indexPath.row.description
+        
+        return cell
     }
     
 }

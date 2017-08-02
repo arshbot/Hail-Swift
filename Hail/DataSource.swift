@@ -7,27 +7,65 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
 class DataSource {
+    
+    var coin: String!
+    
+    init(){
+        self.coin = "Any"
+    }
+    
+    init(coin: String) {
+        self.coin = coin
+    }
+    
     func getAllWallets(){
+        
+    }
+    
+    func getTotalNumberOfWallets() -> Int {
+        return 2
+    }
+    
+    func getNumberOfWallets() -> Int {
+        return 3
+        
+    }
+    
+    func getWalletAtPosition(index: Int) -> CryptoWallet{
+        return CryptoWallet()
+    }
+    
+    func getCurrentFiatValue(){
         
     }
 }
 
-class Transaction: Object {
-    
+class Address: Object {
+    dynamic var value: String = "null"
 }
 
-class UnspentTransactionOutputs: Object {
-    dynamic var coinValue: Double
-    dynamic var dateSent: Date
-    dynamic var transactionId: String
+class Transaction: Object {
+    dynamic var transactionId: String = "null"
+    dynamic var coinValue: Double = -1.0
+    dynamic var purchaseFiatValue: Double = -1.0
+    dynamic var fiatType: String = "null"
+    dynamic var dateSent: Date = Date()
+    dynamic var toAddress: String = "null"
+
 }
+
 
 class CryptoWallet: Object {
-    dynamic var masterKey: String
-    let addresses = List<String>()
-    let utxos = List<UnspentTransactionOutputs>()
-    let sentTransactions = List
+    dynamic var masterKey: String = "null"
+    let addresses = List<Address>()
+    let utxos = List<Transaction>()
+    let sentTransactions = List<Transaction>()
+    let positionIndex: Int = -1
+}
+
+class BitcoinWallet: CryptoWallet {
+    
 }

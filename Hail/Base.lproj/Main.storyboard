@@ -38,7 +38,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="j9a-Jy-74d" customClass="walletReusableCell" customModule="Hail" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="walletReusableCell" id="j9a-Jy-74d" customClass="walletReusableCell" customModule="Hail" customModuleProvider="target">
                                         <rect key="frame" x="27" y="0.0" width="321" height="143"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -128,7 +128,6 @@
                     </view>
                     <connections>
                         <outlet property="walletCollectionView" destination="m99-Fh-kJi" id="Cig-au-bsW"/>
-                        <outlet property="walletCollectionViewCell" destination="j9a-Jy-74d" id="4HH-f4-ONd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
