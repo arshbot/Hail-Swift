@@ -19,6 +19,8 @@ class WorldViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        walletCollectionView.delegate = walletCollectionView as! UICollectionViewDelegate
+        walletCollectionView.dataSource = walletCollectionView as! UICollectionViewDataSource
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +38,8 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     let dataSrc = DataSource(coin: "All")
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var num = dataSrc.getNumberOfWallets
+        //print(num)
         return dataSrc.getNumberOfWallets()
     }
     

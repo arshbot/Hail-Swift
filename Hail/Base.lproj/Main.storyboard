@@ -112,10 +112,9 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="btcValue2" destination="7Ob-xz-9O4" id="n4a-ph-OWs"/>
                                             <outlet property="btcValueOverall" destination="9QU-eo-bib" id="98h-El-JGs"/>
                                             <outlet property="btcValueRow1" destination="kcB-Ya-wFd" id="SZo-io-u2Q"/>
-                                            <outlet property="btcValueRow2" destination="7Ob-xz-9O4" id="LiI-kR-32C"/>
+                                            <outlet property="btcValueRow2" destination="7Ob-xz-9O4" id="zvI-Oh-sED"/>
                                             <outlet property="fiatValueOverall" destination="AYq-7e-16D" id="nSn-X3-CwD"/>
                                             <outlet property="fiatValueRow1" destination="fig-fK-P1m" id="pQ9-0B-2dL"/>
                                             <outlet property="fiatValueRow2" destination="pJU-Cm-Xa5" id="4qo-H3-53r"/>
