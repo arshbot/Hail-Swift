@@ -48,7 +48,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         
         let wallet = dataSrc.getWalletAtPosition(index: indexPath.row)
         
-        cell.btcValueOverall.text = indexPath.row.description
+        cell.btcValueOverall.text = wallet.aggregateCoinValue().description
         cell.fiatValueOverall.text = indexPath.row.description
         cell.btcValueRow1.text = indexPath.row.description
         cell.fiatValueRow1.text = indexPath.row.description

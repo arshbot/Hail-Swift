@@ -35,7 +35,19 @@ class DataSource {
     }
     
     func getWalletAtPosition(index: Int) -> CryptoWallet{
-        return CryptoWallet()
+        let dummyWallet = CryptoWallet()
+        
+        let tx = Transaction()
+        tx.transactionId = "sdkljfID"
+        tx.coinValue = 100
+        tx.purchasedFiatValue = 100000
+        tx.fiatType = "USD"
+        tx.dateSent = Date()
+        tx.toAddress = "ME"
+        
+        dummyWallet.transactions.append(tx)
+        dummyWallet.positionIndex = index
+        return dummyWallet
     }
     
     func getCurrentFiatValue(){
@@ -50,7 +62,7 @@ class Address: Object {
 class Transaction: Object {
     dynamic var transactionId: String = "null"
     dynamic var coinValue: Double = -1.0
-    dynamic var purchaseFiatValue: Double = -1.0
+    dynamic var purchasedFiatValue: Double = -1.0
     dynamic var fiatType: String = "null"
     dynamic var dateSent: Date = Date()
     dynamic var toAddress: String = "null"
@@ -61,11 +73,27 @@ class Transaction: Object {
 class CryptoWallet: Object {
     dynamic var masterKey: String = "null"
     let addresses = List<Address>()
-    let utxos = List<Transaction>()
-    let sentTransactions = List<Transaction>()
-    let positionIndex: Int = -1
+    //let utxos = List<Transaction>()
+    let transactions = List<Transaction>()
+    var positionIndex: Int = -1
+    
+    func aggregateCoinValue() -> Double {
+        let txs = self.transactions
+        var total = 0.0
+        for t in txs {
+            total += t.coinValue
+        }
+        return total
+    }
+    
+    func aggregateFiatValue() -> Double {
+        let txs = self.transactions
+        var total = 0.0
+        for t in txs {
+            total += t.purchasedFiatValue
+        }
+        return total
+    }
 }
 
-class BitcoinWallet: CryptoWallet {
-    
-}
+
