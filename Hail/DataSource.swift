@@ -45,7 +45,17 @@ class DataSource {
         tx.dateSent = Date()
         tx.toAddress = "ME"
         
+        let tx2 = Transaction()
+        tx2.transactionId = "ljkhakljsdhfID"
+        tx2.coinValue = 14
+        tx2.purchasedFiatValue = 1444
+        tx2.fiatType = "USD"
+        tx2.dateSent = Date()
+        tx2.toAddress = "HKJkhhJBhknJJklmlp"
+        
         dummyWallet.transactions.append(tx)
+        dummyWallet.transactions.append(tx2)
+        
         dummyWallet.positionIndex = index
         return dummyWallet
     }
@@ -93,6 +103,13 @@ class CryptoWallet: Object {
             total += t.purchasedFiatValue
         }
         return total
+    }
+    
+    func popLastTwo() -> [Transaction] {
+        var result: [Transaction] = []
+        result.append(self.transactions.first!)
+        result.append(self.transactions.last!)
+        return result
     }
 }
 

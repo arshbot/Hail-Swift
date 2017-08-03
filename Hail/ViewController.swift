@@ -48,12 +48,14 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         
         let wallet = dataSrc.getWalletAtPosition(index: indexPath.row)
         
-        cell.btcValueOverall.text = wallet.aggregateCoinValue().description
-        cell.fiatValueOverall.text = indexPath.row.description
-        cell.btcValueRow1.text = indexPath.row.description
-        cell.fiatValueRow1.text = indexPath.row.description
-        cell.btcValueRow2.text = indexPath.row.description
-        cell.fiatValueRow2.text = indexPath.row.description
+        cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
+        cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
+        
+        let transactions: [Transaction] = wallet.popLastTwo()
+        cell.TX1CoinValue.text = transactions[0].coinValue.description
+        cell.TX1FiatValue.text = transactions[0].purchasedFiatValue.description
+        cell.TX2CoinValue.text = transactions[1].coinValue.description
+        cell.TX2FiatValue.text = transactions[1].purchasedFiatValue.description
         
         return cell
     }
@@ -64,17 +66,15 @@ class walletReusableCell: UICollectionViewCell {
     
     //Begin Import things
     
-    @IBOutlet weak var btcValueOverall: UILabel!
+    @IBOutlet weak var coinValueComprehensive: UILabel!
+  
+    @IBOutlet weak var fiatValueComprehensive: UILabel!
     
-    @IBOutlet weak var fiatValueOverall: UILabel!
+    @IBOutlet weak var TX1CoinValue: UILabel!
     
-    @IBOutlet weak var btcValueRow1: UILabel!
+    @IBOutlet weak var TX1FiatValue: UILabel!
     
-    @IBOutlet weak var fiatValueRow1: UILabel!
-    
-    @IBOutlet weak var btcValueRow2: UILabel!
-    
-    @IBOutlet weak var fiatValueRow2: UILabel!
-    
-    
+    @IBOutlet weak var TX2CoinValue: UILabel!
+
+    @IBOutlet weak var TX2FiatValue: UILabel!
 }
