@@ -14,6 +14,11 @@ class WorldViewController: UIViewController {
     
     @IBOutlet weak var walletCollectionView: UICollectionView!
     
+    @IBAction func createWallet(_ sender: Any) {
+        print("HELLO")
+        self.performSegue(withIdentifier: "NewWallet", sender: self)
+    }
+  
     
     
     override func viewDidLoad() {
@@ -21,6 +26,7 @@ class WorldViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         walletCollectionView.delegate = walletCollectionView as! UICollectionViewDelegate
         walletCollectionView.dataSource = walletCollectionView as! UICollectionViewDataSource
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +57,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
         cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
         
-        let transactions: [Transaction] = wallet.popLastTwo()
+        let transactions: [Transaction] = wallet.popLastTwoTransactions()
         cell.TX1CoinValue.text = transactions[0].coinValue.description
         cell.TX1FiatValue.text = transactions[0].purchasedFiatValue.description
         cell.TX2CoinValue.text = transactions[1].coinValue.description
@@ -77,4 +83,6 @@ class walletReusableCell: UICollectionViewCell {
     @IBOutlet weak var TX2CoinValue: UILabel!
 
     @IBOutlet weak var TX2FiatValue: UILabel!
+    
+    
 }

@@ -105,7 +105,7 @@ class CryptoWallet: Object {
         return total
     }
     
-    func popLastTwo() -> [Transaction] {
+    func popLastTwoTransactions() -> [Transaction] {
         var result: [Transaction] = []
         result.append(self.transactions.first!)
         result.append(self.transactions.last!)
