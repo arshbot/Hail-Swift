@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class DataSource {
+class DataManager {
     
     var coin: String!
     

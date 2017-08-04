@@ -11,21 +11,50 @@ import UIKit
 
 class NewWalletViewController: UIViewController {
     
-    @IBAction func newWalletName(_ sender: Any) {
+    @IBOutlet weak var litecoinSelectedHue: UIView!
+    
+    @IBOutlet weak var bitcoinSelectedHue: UIView!
+    
+    var coinType: String = "null"
+    
+    @IBOutlet weak var walletNameField: UITextField!
+
+    @IBAction func newWalletCreated(_ sender: Any) {
+        let name = walletNameField.text
+        
     }
     
+    
     @IBAction func bitcoinSelected(_ sender: Any) {
-        self.performSegue(withIdentifier: "NewWallet", sender: self)
+        selectCoin(coin: "Bitcoin")
+        //self.performSegue(withIdentifier: "NewWallet", sender: self)
 
     }
     
     @IBAction func litecoinSelected(_ sender: Any) {
-        self.performSegue(withIdentifier: "NewWallet", sender: self)
+        selectCoin(coin: "Litecoin")
+
+        //self.performSegue(withIdentifier: "NewWallet", sender: self)
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        litecoinSelectedHue.backgroundColor = UIColor.clear
+        bitcoinSelectedHue.backgroundColor = UIColor.clear
+    }
+    
+    func selectCoin(coin: String) {
+        litecoinSelectedHue.backgroundColor = UIColor.clear
+        bitcoinSelectedHue.backgroundColor = UIColor.clear
+        coinType = coin
+        if(coin == "Bitcoin") {
+            bitcoinSelectedHue.backgroundColor = UIColor.blue
+        }
+        else if (coin == "Litecoin") {
+            litecoinSelectedHue.backgroundColor = UIColor.blue
+        }
+        
     }
     
 }

@@ -41,18 +41,18 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
     
     
-    let dataSrc = DataSource(coin: "All")
+    let dataManager = DataManager(coin: "All")
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var num = dataSrc.getNumberOfWallets
+        var num = dataManager.getNumberOfWallets
         //print(num)
-        return dataSrc.getNumberOfWallets()
+        return dataManager.getNumberOfWallets()
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
         
-        let wallet = dataSrc.getWalletAtPosition(index: indexPath.row)
+        let wallet = dataManager.getWalletAtPosition(index: indexPath.row)
         
         cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
         cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
