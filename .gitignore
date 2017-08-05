@@ -127,3 +127,4 @@ xcuserdata
 /*.gcno
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods,objective-c
+.DS_Store
