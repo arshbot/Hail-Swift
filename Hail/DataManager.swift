@@ -26,7 +26,7 @@ class DataManager {
         var wallet = CryptoWallet()
         wallet.name = name
         wallet.coinType = coinType
-        wallet.positionIndex = 0
+        wallet.positionIndex = getTotalNumberOfWallets() + 1
         try! realm.write {
             realm.add(wallet)
         }
@@ -37,17 +37,25 @@ class DataManager {
     }
     
     func getTotalNumberOfWallets() -> Int {
-        return 2
+        return realm.objects(CryptoWallet.self).count
     }
     
     func getNumberOfWalletsFor(coin: String) -> Int {
-        return 3
-        
+        return realm.objects(CryptoWallet.self).filter("coinType == %@", coin).count
+    }
+    
+    func getWalletsFor(coin: String) -> Results<CryptoWallet> {
+        return realm.objects(CryptoWallet.self).filter("coinType == %@", coin)
+    }
+    
+    func getWalletsOrderedByIndex() -> Results<CryptoWallet> {
+        //Returns wallets by index from 0 to last
+        return realm.objects(CryptoWallet.self).sorted(byKeyPath: "CryptoWallet.positionIndex")
     }
     
     func getWalletAtPosition(index: Int) -> CryptoWallet{
         let dummyWallet = CryptoWallet()
-        
+        //Load dummy tx data
         let tx = Transaction()
         tx.transactionId = "sdkljfID"
         tx.coinValue = 100
@@ -96,8 +104,9 @@ class CryptoWallet: Object {
     dynamic var name: String = "null"
     dynamic var masterKey: String = "null"
     let addresses = List<Address>()
-    //let utxos = List<Transaction>()
     let transactions = List<Transaction>()
+    
+    //Index presents views starting at 1
     var positionIndex: Int = -1
     
     func aggregateCoinValue() -> Double {
