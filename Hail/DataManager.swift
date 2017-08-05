@@ -10,7 +10,8 @@ import Foundation
 import RealmSwift
 
 class DataManager {
-    
+    let realm = try! Realm()
+
     var coin: String!
     
     init(){
@@ -21,6 +22,16 @@ class DataManager {
         self.coin = coin
     }
     
+    func addWallet(name: String, coinType: String) {
+        var wallet = CryptoWallet()
+        wallet.name = name
+        wallet.coinType = coinType
+        wallet.positionIndex = 0
+        try! realm.write {
+            realm.add(wallet)
+        }
+    }
+    
     func getAllWallets(){
         
     }
@@ -29,7 +40,7 @@ class DataManager {
         return 2
     }
     
-    func getNumberOfWallets() -> Int {
+    func getNumberOfWalletsFor(coin: String) -> Int {
         return 3
         
     }
@@ -81,6 +92,8 @@ class Transaction: Object {
 
 
 class CryptoWallet: Object {
+    dynamic var coinType: String = "null"
+    dynamic var name: String = "null"
     dynamic var masterKey: String = "null"
     let addresses = List<Address>()
     //let utxos = List<Transaction>()
