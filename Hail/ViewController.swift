@@ -26,7 +26,12 @@ class WorldViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         walletCollectionView.delegate = walletCollectionView as! UICollectionViewDelegate
         walletCollectionView.dataSource = walletCollectionView as! UICollectionViewDataSource
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
+    func loadList(){
+        //load data here
+        self.walletCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,20 +44,21 @@ class WorldViewController: UIViewController {
 
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
-    
     let dataManager = DataManager(coin: "All")
+    var wallets:[NSObject] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var num = dataManager.getNumberOfWallets
-        //print(num)
-        return dataManager.getNumberOfWallets()
+        self.wallets = Array(dataManager.getWalletsOrderedByIndex())
+        return dataManager.getTotalNumberOfWallets()
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let wallet = wallets.popLast() as! CryptoWallet
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
         
-        let wallet = dataManager.getWalletAtPosition(index: indexPath.row)
+        
         
         cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
         cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
@@ -84,5 +90,24 @@ class walletReusableCell: UICollectionViewCell {
 
     @IBOutlet weak var TX2FiatValue: UILabel!
     
+    
+}
+
+class singleTXWalletReusableCell: UICollectionViewCell {
+
+    @IBOutlet weak var coinValueComprehensive: UILabel!
+    
+    @IBOutlet weak var fiatValueComprehensive: UILabel!
+    
+    @IBOutlet weak var TX1CoinValue: UILabel!
+    
+    @IBOutlet weak var TX1FiatValue: UILabel!
+}
+
+
+
+class emptyWalletReusableCell: UICollectionViewCell {
+    
+    @IBOutlet weak var coinType: UILabel!
     
 }

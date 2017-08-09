@@ -17,10 +17,16 @@ class NewWalletViewController: UIViewController {
     
     var coinType: String = "null"
     
+    let dataManager = DataManager()
+    
     @IBOutlet weak var walletNameField: UITextField!
 
     @IBAction func newWalletCreated(_ sender: Any) {
-        let name = walletNameField.text
+        self.dismiss(animated: true, completion: {
+            let name = self.walletNameField.text
+            let coinType = self.coinType
+            self.dataManager.addWallet(name: name!, coinType: coinType)
+        })
         
     }
     

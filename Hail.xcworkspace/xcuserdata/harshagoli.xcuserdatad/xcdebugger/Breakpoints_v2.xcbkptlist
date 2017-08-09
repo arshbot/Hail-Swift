@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/ViewController.swift"
-            timestampString = "523505356.114816"
+            timestampString = "523845415.276903"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,13 +26,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/ViewController.swift"
-            timestampString = "523505356.114816"
+            timestampString = "523845415.276903"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hail/ViewController.swift"
+            timestampString = "523845428.228521"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "walletCollectionView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.walletCollectionView.__deallocating_deinit"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/ViewController.swift"
+                  timestampString = "523845428.279128"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.walletCollectionView.init (frame : __C.CGRect, collectionViewLayout : __ObjC.UICollectionViewLayout) -&gt; Hail.walletCollectionView"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/ViewController.swift"
+                  timestampString = "523845428.280931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.walletCollectionView.__allocating_init (frame : __C.CGRect, collectionViewLayout : __ObjC.UICollectionViewLayout) -&gt; Hail.walletCollectionView"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/ViewController.swift"
+                  timestampString = "523845428.282778"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.walletCollectionView.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Hail.walletCollectionView&gt;"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/ViewController.swift"
+                  timestampString = "523845428.285329"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.walletCollectionView.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Hail.walletCollectionView&gt;"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/ViewController.swift"
+                  timestampString = "523845428.287258"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -50,11 +50,12 @@ class DataManager {
     
     func getWalletsOrderedByIndex() -> Results<CryptoWallet> {
         //Returns wallets by index from 0 to last
-        return realm.objects(CryptoWallet.self).sorted(byKeyPath: "CryptoWallet.positionIndex")
+        return realm.objects(CryptoWallet.self).sorted(byKeyPath: "positionIndex")
     }
     
-    func getWalletAtPosition(index: Int) -> CryptoWallet{
+    func getWalletAt(index: Int) -> CryptoWallet{
         let dummyWallet = CryptoWallet()
+        
         //Load dummy tx data
         let tx = Transaction()
         tx.transactionId = "sdkljfID"
@@ -107,7 +108,7 @@ class CryptoWallet: Object {
     let transactions = List<Transaction>()
     
     //Index presents views starting at 1
-    var positionIndex: Int = -1
+    dynamic var positionIndex: Int = -1
     
     func aggregateCoinValue() -> Double {
         let txs = self.transactions
@@ -132,6 +133,10 @@ class CryptoWallet: Object {
         result.append(self.transactions.first!)
         result.append(self.transactions.last!)
         return result
+    }
+    
+    func getLastTransaction() -> Transaction {
+        return self.transactions.last!
     }
 }
 
