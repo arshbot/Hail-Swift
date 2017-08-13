@@ -77,6 +77,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
 
             case 1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "singleTXWalletReusableCell", for: indexPath) as! singleTXWalletReusableCell
+                cell.wallet = wallet
                 cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
                 cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
                 cell.TX1CoinValue.text = wallet.transactions.last?.coinValue.description
@@ -85,7 +86,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
 
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
-            
+                cell.wallet = wallet
                 cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
                 cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
             
@@ -117,6 +118,14 @@ class walletReusableCell: UICollectionViewCell {
 
     @IBOutlet weak var TX2FiatValue: UILabel!
     
+    @IBAction func deleteWallet(_ sender: Any) {
+        dataManager.deleteWallet(wallet: wallet)
+    }
+    
+    var wallet: CryptoWallet = CryptoWallet()
+    
+    let dataManager = DataManager(coin: "All")
+
     
 }
 
@@ -129,6 +138,15 @@ class singleTXWalletReusableCell: UICollectionViewCell {
     @IBOutlet weak var TX1CoinValue: UILabel!
     
     @IBOutlet weak var TX1FiatValue: UILabel!
+    
+    @IBAction func deleteWallet(_ sender: Any) {
+        dataManager.deleteWallet(wallet: wallet)
+    }
+    
+    var wallet: CryptoWallet = CryptoWallet()
+    
+    let dataManager = DataManager(coin: "All")
+
 }
 
 
@@ -137,4 +155,11 @@ class emptyWalletReusableCell: UICollectionViewCell {
     
     @IBOutlet weak var coinType: UILabel!
     
+    @IBAction func deleteWallet(_ sender: Any) {
+        dataManager.deleteWallet(wallet: wallet)
+    }
+    
+    var wallet: CryptoWallet = CryptoWallet()
+    
+    let dataManager = DataManager(coin: "All")
 }

@@ -110,7 +110,10 @@
                                                     <rect key="frame" x="114" y="105" width="93" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteWallet:" destination="j9a-Jy-74d" eventType="touchUpInside" id="nCB-64-Xck"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TX2CoinValue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ob-xz-9O4">
                                                     <rect key="frame" x="20" y="71" width="108" height="21"/>
@@ -128,6 +131,7 @@
                                             <outlet property="TX2CoinValue" destination="7Ob-xz-9O4" id="kue-pq-JXb"/>
                                             <outlet property="TX2FiatValue" destination="pJU-Cm-Xa5" id="zMe-t6-M7s"/>
                                             <outlet property="coinValueComprehensive" destination="9QU-eo-bib" id="oZp-BI-cQ1"/>
+                                            <outlet property="deleteWallet" destination="6df-Tu-sLg" id="mdx-r8-fpx"/>
                                             <outlet property="fiatValueComprehensive" destination="AYq-7e-16D" id="dhK-fH-kJw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -166,6 +170,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1y-bX-Pdp">
+                                                    <rect key="frame" x="121" y="93" width="78" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteWallet:" destination="YJ8-G4-eSJ" eventType="touchUpInside" id="QgP-hX-Nvs"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -198,6 +211,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-XP-pJz">
+                                                    <rect key="frame" x="132" y="24" width="66" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteWallet:" destination="lFq-ci-yqP" eventType="touchUpInside" id="9JK-u5-Yv8"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

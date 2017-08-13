@@ -88,6 +88,10 @@ class DataManager {
     func getCurrentFiatValue(){
         
     }
+    
+    func deleteWallet(wallet: CryptoWallet){
+        realm.delete(realm.objects(CryptoWallet))
+    }
 }
 
 class Address: Object {
