@@ -45,31 +45,58 @@ class WorldViewController: UIViewController {
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let dataManager = DataManager(coin: "All")
-    var wallets:[NSObject] = []
+    //var wallets:[NSObject] = []
+    var isEmpty: Bool = false
+    var runCount = 0
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.wallets = Array(dataManager.getWalletsOrderedByIndex())
-        return dataManager.getTotalNumberOfWallets()
+        let num = dataManager.walletCount
+        if (num == 0) {
+            self.isEmpty = true
+            return 1
+        }
+        return num
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let wallet = wallets.popLast() as! CryptoWallet
+        runCount+=1
+
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
-        
-        
-        
-        cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
-        cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
-        
-        let transactions: [Transaction] = wallet.popLastTwoTransactions()
-        cell.TX1CoinValue.text = transactions[0].coinValue.description
-        cell.TX1FiatValue.text = transactions[0].purchasedFiatValue.description
-        cell.TX2CoinValue.text = transactions[1].coinValue.description
-        cell.TX2FiatValue.text = transactions[1].purchasedFiatValue.description
-        
-        return cell
+        if (isEmpty){
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noWalletCell", for: indexPath)
+            return cell
+        }
+        //let index = dataManager.walletCount - indexPath.item - 1
+        let wallet = Array(dataManager.getWalletsOrderedByIndex().reversed())[indexPath.item]
+        switch wallet.transactions.count {
+            case 0:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyWalletReusableCell", for: indexPath) as! emptyWalletReusableCell
+                cell.coinType!.text = wallet.coinType
+                return cell
+
+            case 1:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "singleTXWalletReusableCell", for: indexPath) as! singleTXWalletReusableCell
+                cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
+                cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
+                cell.TX1CoinValue.text = wallet.transactions.last?.coinValue.description
+                cell.TX1FiatValue.text = wallet.transactions.last?.fiatType.description
+                return cell
+
+            default:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walletReusableCell", for: indexPath) as! walletReusableCell
+            
+                cell.coinValueComprehensive.text = wallet.aggregateCoinValue().description
+                cell.fiatValueComprehensive.text = wallet.aggregateFiatValue().description
+            
+                let transactions: [Transaction] = wallet.popLastTwoTransactions()
+                cell.TX1CoinValue.text = transactions[0].coinValue.description
+                cell.TX1FiatValue.text = transactions[0].purchasedFiatValue.description
+                cell.TX2CoinValue.text = transactions[1].coinValue.description
+                cell.TX2FiatValue.text = transactions[1].purchasedFiatValue.description
+                return cell
+
+        }
     }
     
 }

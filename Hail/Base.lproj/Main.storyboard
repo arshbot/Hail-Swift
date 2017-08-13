@@ -176,7 +176,7 @@
                                             <outlet property="fiatValueComprehensive" destination="xmB-aa-CEs" id="iJJ-CZ-vJs"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lFq-ci-yqP" customClass="emptyWalletReusableCell" customModule="Hail" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyWalletReusableCell" id="lFq-ci-yqP" customClass="emptyWalletReusableCell" customModule="Hail" customModuleProvider="target">
                                         <rect key="frame" x="27" y="346" width="321" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

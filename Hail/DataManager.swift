@@ -16,17 +16,20 @@ class DataManager {
     
     init(){
         self.coin = "Any"
+        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
     }
     
     init(coin: String) {
         self.coin = coin
+        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
+
     }
     
     func addWallet(name: String, coinType: String) {
         var wallet = CryptoWallet()
         wallet.name = name
         wallet.coinType = coinType
-        wallet.positionIndex = getTotalNumberOfWallets() + 1
+        //wallet.positionIndex = walletCount + 1
         try! realm.write {
             realm.add(wallet)
         }
@@ -36,8 +39,10 @@ class DataManager {
         
     }
     
-    func getTotalNumberOfWallets() -> Int {
-        return realm.objects(CryptoWallet.self).count
+    var walletCount: Int {
+        get{
+            return realm.objects(CryptoWallet.self).count
+        }
     }
     
     func getNumberOfWalletsFor(coin: String) -> Int {
