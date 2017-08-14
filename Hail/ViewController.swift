@@ -45,6 +45,7 @@ class WorldViewController: UIViewController {
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let dataManager = DataManager(coin: "All")
+    let nodeManager = NodeManager(coin: "Bitcoin")
     //var wallets:[NSObject] = []
     var isEmpty: Bool = false
     var runCount = 0

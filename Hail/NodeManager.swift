@@ -7,25 +7,63 @@
 //
 
 import Foundation
+import SwiftHTTP
+
+//TODO:
 
 class NodeManager {
+    
+    let bitcoinNodeURL: String = "http://127.0.0.1:18332"
+    let bitcoinNodeUser: String = "x"
+    let bitcoinNodePassword: String = "iamsatoshi"
     
     let coin: String
     
     init(coin: String) {
         self.coin = coin
+        establishConnection()
     }
     
-    func establishConnection() -> Bool {
+    func establishConnection() { //-> Bool {
         switch coin {
         case "Bitcoin":
-            let url = URL(string: "http://www.stackoverflow.com")
-            let request = URLRequest(url: url!)
-            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-                print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            do {
+                let opt = try HTTP.GET(bitcoinNodeURL)
+                var success: Bool?
+                
+                //Inital auth
+                var attempted = false
+                opt.auth = { challenge in
+                    if !attempted {
+                        attempted = true
+                        return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
+                    }
+                    print("Bitcoin Auth Failed")
+                    return nil //auth failed, nil causes the request to be properly cancelled.
+                }
+                
+                opt.start { response in
+                    if let err = response.error {
+                        print("error: \(err.localizedDescription)")
+                        success = false
+                    } else {
+                        print("Bitcoin connection successful")
+                        print("opt finished: \(response.description)")
+                        //print("data is: \(response.data)") access the response of the data with response.data
+                        if (success == nil) {
+                            success = true
+                        }
+                    }
+                   
+                }
+                //return success!
+            } catch let error {
+                print("got an error creating the request: \(error)")
+                //return false
             }
         default:
             print("coin variable not initialized in NodeManager")
+            //return false
         }
     }
     

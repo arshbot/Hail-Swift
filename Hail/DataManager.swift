@@ -29,6 +29,7 @@ class DataManager {
         var wallet = CryptoWallet()
         wallet.name = name
         wallet.coinType = coinType
+        wallet.id = String(arc4random())
         //wallet.positionIndex = walletCount + 1
         try! realm.write {
             realm.add(wallet)
@@ -113,6 +114,8 @@ class CryptoWallet: Object {
     dynamic var coinType: String = "null"
     dynamic var name: String = "null"
     dynamic var masterKey: String = "null"
+    dynamic var id: String = "null"
+
     let addresses = List<Address>()
     let transactions = List<Transaction>()
     
