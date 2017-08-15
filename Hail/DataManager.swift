@@ -16,12 +16,12 @@ class DataManager {
     
     init(){
         self.coin = "Any"
-        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
+        //print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
     init(coin: String) {
         self.coin = coin
-        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
+        //print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
 
     }
     

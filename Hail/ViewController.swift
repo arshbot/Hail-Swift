@@ -15,7 +15,6 @@ class WorldViewController: UIViewController {
     @IBOutlet weak var walletCollectionView: UICollectionView!
     
     @IBAction func createWallet(_ sender: Any) {
-        print("HELLO")
         self.performSegue(withIdentifier: "NewWallet", sender: self)
     }
   
@@ -48,27 +47,26 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     let nodeManager = NodeManager(coin: "Bitcoin")
     //var wallets:[NSObject] = []
     var isEmpty: Bool = false
-    var runCount = 0
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let num = dataManager.walletCount
         if (num == 0) {
             self.isEmpty = true
             return 1
+        } else {
+            isEmpty = false
+            return num
         }
-        return num
+        
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        runCount+=1
-
         
         if (isEmpty){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noWalletCell", for: indexPath)
             return cell
         }
-        //let index = dataManager.walletCount - indexPath.item - 1
+        
         let wallet = Array(dataManager.getWalletsOrderedByIndex().reversed())[indexPath.item]
         switch wallet.transactions.count {
             case 0:
