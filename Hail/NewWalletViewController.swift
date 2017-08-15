@@ -26,7 +26,6 @@ class NewWalletViewController: UIViewController {
             let name = self.walletNameField.text
             let coinType = self.coinType
             self.dataManager.addWallet(name: name!, coinType: coinType)
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 
         })

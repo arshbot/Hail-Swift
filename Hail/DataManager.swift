@@ -16,7 +16,7 @@ class DataManager {
     
     init(){
         self.coin = "Any"
-        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
+        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
     init(coin: String) {
@@ -31,8 +31,15 @@ class DataManager {
         wallet.coinType = coinType
         wallet.id = String(arc4random())
         //wallet.positionIndex = walletCount + 1
-        try! realm.write {
-            realm.add(wallet)
+        
+        let duplicateWallets = realm.objects(CryptoWallet.self).filter("id == %@", wallet.id)
+        
+        if (duplicateWallets.count != 0) {
+            print("Wallet input failed. Wallet with same id found")
+        } else {
+            try! realm.write {
+                realm.add(wallet)
+            }
         }
     }
     
@@ -91,7 +98,10 @@ class DataManager {
     }
     
     func deleteWallet(wallet: CryptoWallet){
-        realm.delete(realm.objects(CryptoWallet))
+        try! realm.write {
+            realm.delete(realm.objects(CryptoWallet.self).filter("id == %@", wallet.id))
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
 }
 

@@ -73,6 +73,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         switch wallet.transactions.count {
             case 0:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyWalletReusableCell", for: indexPath) as! emptyWalletReusableCell
+                cell.wallet = wallet
                 cell.coinType!.text = wallet.coinType
                 return cell
 
