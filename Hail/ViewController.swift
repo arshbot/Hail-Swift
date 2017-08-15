@@ -18,6 +18,9 @@ class WorldViewController: UIViewController {
         self.performSegue(withIdentifier: "NewWallet", sender: self)
     }
   
+    @IBAction func newTx(_ sender: Any) {
+        self.performSegue(withIdentifier: "NewTransaction", sender: self)
+    }
     
     
     override func viewDidLoad() {
