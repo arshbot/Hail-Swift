@@ -30,8 +30,8 @@ class WorldViewController: UIViewController {
     }
     
     func loadList(){
-        //load data here
         self.walletCollectionView.reloadData()
+        //self.walletCollectionView.reload
     }
 
     override func didReceiveMemoryWarning() {
