@@ -10,15 +10,33 @@ import Foundation
 import UIKit
 
 class NewTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var destination: UITextField!
+    
+    @IBOutlet weak var amount: UITextField!
     
     @IBAction func sendTx(_ sender: Any) {
         if selectedWallet.name == "null" {
             let alert = UIAlertController(title: "Alert", message: "Please select a wallet", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+        } else if (destination.text == nil) {
+            let alert = UIAlertController(title: "Alert", message: "Please specify a destination", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else if (amount.text == nil) {
+            let alert = UIAlertController(title: "Alert", message: "Please enter a number for the amount", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
-            
+            do {
+                let _ = Double(amount.text!)
+            } catch _ {
+                let alert = UIAlertController(title: "Alert", message: "Please enter a number for the amount", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            dataManager.submitTransaction(wallet: selectedWallet, destinationAddr: destination.text!, amount: Double(amount.text!)!)
         }
     }
     

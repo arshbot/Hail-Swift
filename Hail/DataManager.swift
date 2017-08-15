@@ -25,6 +25,10 @@ class DataManager {
 
     }
     
+    func submitTransaction(wallet: CryptoWallet, destinationAddr: String, amount: Double) {
+        print("\(wallet.name) \(destinationAddr) \(amount.description)")
+    }
+    
     func addWallet(name: String, coinType: String) {
         var wallet = CryptoWallet()
         wallet.name = name
