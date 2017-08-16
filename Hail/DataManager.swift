@@ -25,8 +25,12 @@ class DataManager {
 
     }
     
-    func submitTransaction(wallet: CryptoWallet, destinationAddr: String, amount: Double) {
-        print("\(wallet.name) \(destinationAddr) \(amount.description)")
+    func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) {
+        let tx = Transaction()
+        tx.coinValue = amount
+        tx.toAddress = toAddress
+        wallet.transactions.append(tx)
+    
     }
     
     func addWallet(name: String, coinType: String) {
@@ -135,6 +139,10 @@ class CryptoWallet: Object {
     
     //Index presents views starting at 1
     dynamic var positionIndex: Int = -1
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     func aggregateCoinValue() -> Double {
         let txs = self.transactions
