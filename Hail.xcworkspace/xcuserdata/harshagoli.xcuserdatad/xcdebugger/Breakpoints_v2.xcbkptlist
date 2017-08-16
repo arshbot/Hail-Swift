@@ -167,11 +167,11 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/DataManager.swift"
-                  timestampString = "524514991.23527"
+                  timestampString = "524534267.31079"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
                   offsetFromSymbolStart = "27">
                </Location>
                <Location
@@ -182,11 +182,11 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/DataManager.swift"
-                  timestampString = "524514991.237389"
+                  timestampString = "524534267.313163"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -211,7 +211,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/DataManager.swift"
@@ -222,6 +222,22 @@
             endingLineNumber = "54"
             landmarkName = "walletCount"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hail/NewTransactionViewController.swift"
+            timestampString = "524534143.245473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "sendTx(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
