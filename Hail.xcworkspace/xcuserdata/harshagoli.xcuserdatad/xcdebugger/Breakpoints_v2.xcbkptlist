@@ -147,7 +147,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/ViewController.swift"
@@ -179,15 +179,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NewTransactionViewController.swift"
-            timestampString = "524534143.245473"
+            timestampString = "524777111.285604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "sendTx(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.NewTransactionViewController.sendTx (Any) -&gt; ()"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NewTransactionViewController.swift"
+                  timestampString = "524777252.502581"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "9212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hail.NewTransactionViewController.(sendTx (Any) -&gt; ()).(closure #1)"
+                  moduleName = "Hail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NewTransactionViewController.swift"
+                  timestampString = "524777252.504579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hail/NewTransactionViewController.swift"
+            timestampString = "524777113.257246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "sendTx(_:)"
             landmarkType = "7">
          </BreakpointContent>

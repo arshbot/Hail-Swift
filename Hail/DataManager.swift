@@ -21,7 +21,7 @@ class DataManager {
     
     init(coin: String) {
         self.coin = coin
-        //print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
+        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
 
     }
     
@@ -34,7 +34,7 @@ class DataManager {
         let tx = Transaction()
         tx.coinValue = amount - (2 * amount)
         
-        let addr = Address()
+        let addr = WalletAddress()
         addr.value = toAddress
         
         tx.toAddress = addr
@@ -98,7 +98,7 @@ class DataManager {
     }
 }
 
-class Address: Object {
+class WalletAddress: Object {
     dynamic var value: String = "null"
 }
 
@@ -108,7 +108,7 @@ class Transaction: Object {
     dynamic var purchasedFiatValue: Double = -1.0
     dynamic var fiatType: String = "null"
     dynamic var dateSent: Date = Date()
-    dynamic var toAddress: Address = Address()
+    dynamic var toAddress: WalletAddress? = WalletAddress()
 
 }
 
@@ -119,7 +119,7 @@ class CryptoWallet: Object {
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"
 
-    let addresses = List<Address>()
+    let addresses = List<WalletAddress>()
     let transactions = List<Transaction>()
     
     //Index presents views starting at 1
@@ -135,7 +135,7 @@ class CryptoWallet: Object {
         var postedBalance = 0.0
         
         for tx in self.transactions {
-            if (self.addresses.contains(tx.toAddress)) {
+            if (self.addresses.contains(tx.toAddress!)) {
                 balance += tx.coinValue
             } else {
                 postedBalance += tx.coinValue
