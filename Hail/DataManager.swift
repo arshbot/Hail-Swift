@@ -25,22 +25,24 @@ class DataManager {
 
     }
     
-    func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) {
+    func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) -> Bool {
         
         if ((wallet.aggregateCoinValue() - amount) < 0) {
-            let alert = UIAlertController(title: "Alert", message: "Insufficient Funds", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
+            return false
         }
         
         let tx = Transaction()
         tx.coinValue = amount - (2 * amount)
-        tx.toAddress = toAddress
+        
+        let addr = Address()
+        addr.value = toAddress
+        
+        tx.toAddress = addr
         try! realm.write {
             wallet.transactions.append(tx)
         }
-    
+        
+        return true
     }
     
     func addWallet(name: String, coinType: String) {
@@ -133,7 +135,7 @@ class Transaction: Object {
     dynamic var purchasedFiatValue: Double = -1.0
     dynamic var fiatType: String = "null"
     dynamic var dateSent: Date = Date()
-    dynamic var toAddress: String = "null"
+    dynamic var toAddress: Address = Address()
 
 }
 

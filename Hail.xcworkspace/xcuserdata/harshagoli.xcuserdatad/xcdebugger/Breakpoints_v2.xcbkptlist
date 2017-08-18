@@ -150,54 +150,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Hail/DataManager.swift"
-            timestampString = "524536403.872413"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "deleteWallet(wallet:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hail.DataManager.deleteWallet (wallet : Hail.CryptoWallet) -&gt; ()"
-                  moduleName = "Hail"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/DataManager.swift"
-                  timestampString = "524534267.31079"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hail.DataManager.(deleteWallet (wallet : Hail.CryptoWallet) -&gt; ()).(closure #1)"
-                  moduleName = "Hail"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshagoli/Projects/Hail/Hail/DataManager.swift"
-                  timestampString = "524534267.313163"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Hail/ViewController.swift"
             timestampString = "524515536.145423"
             startingColumnNumber = "9223372036854775807"
