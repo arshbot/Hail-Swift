@@ -86,33 +86,6 @@ class DataManager {
         return realm.objects(CryptoWallet.self).sorted(byKeyPath: "positionIndex")
     }
     
-    func getWalletAt(index: Int) -> CryptoWallet{
-        let dummyWallet = CryptoWallet()
-        
-        //Load dummy tx data
-        let tx = Transaction()
-        tx.transactionId = "sdkljfID"
-        tx.coinValue = 100
-        tx.purchasedFiatValue = 100000
-        tx.fiatType = "USD"
-        tx.dateSent = Date()
-        tx.toAddress = "ME"
-        
-        let tx2 = Transaction()
-        tx2.transactionId = "ljkhakljsdhfID"
-        tx2.coinValue = 14
-        tx2.purchasedFiatValue = 1444
-        tx2.fiatType = "USD"
-        tx2.dateSent = Date()
-        tx2.toAddress = "HKJkhhJBhknJJklmlp"
-        
-        dummyWallet.transactions.append(tx)
-        dummyWallet.transactions.append(tx2)
-        
-        dummyWallet.positionIndex = index
-        return dummyWallet
-    }
-    
     func getCurrentFiatValue(){
         
     }
