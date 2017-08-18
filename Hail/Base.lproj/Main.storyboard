@@ -21,33 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBe-x9-6JW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHz-iT-TEb">
-                                        <rect key="frame" x="251" y="7" width="73" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="new wallet"/>
-                                        <connections>
-                                            <action selector="createWallet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YTe-l1-B0I"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HE-vd-74r">
-                                        <rect key="frame" x="154" y="8" width="75" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="new Tx"/>
-                                        <connections>
-                                            <action selector="newTx:" destination="BYZ-38-t0r" eventType="touchUpInside" id="smR-1c-L17"/>
-                                            <segue destination="nm0-kT-EF7" kind="presentation" identifier="NewTransaction" id="hc5-7L-MVW"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.35294117650000001" green="0.85882352939999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="m99-Fh-kJi" customClass="walletCollectionView" customModule="Hail" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="269" width="375" height="398"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -141,7 +114,6 @@
                                             <outlet property="TX2CoinValue" destination="7Ob-xz-9O4" id="kue-pq-JXb"/>
                                             <outlet property="TX2FiatValue" destination="pJU-Cm-Xa5" id="zMe-t6-M7s"/>
                                             <outlet property="coinValueComprehensive" destination="9QU-eo-bib" id="oZp-BI-cQ1"/>
-                                            <outlet property="deleteWallet" destination="6df-Tu-sLg" id="mdx-r8-fpx"/>
                                             <outlet property="fiatValueComprehensive" destination="AYq-7e-16D" id="dhK-fH-kJw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -258,6 +230,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBe-x9-6JW">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHz-iT-TEb">
+                                        <rect key="frame" x="251" y="7" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="new wallet"/>
+                                        <connections>
+                                            <action selector="createWallet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YTe-l1-B0I"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HE-vd-74r">
+                                        <rect key="frame" x="154" y="8" width="75" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="new Tx"/>
+                                        <connections>
+                                            <action selector="newTx:" destination="BYZ-38-t0r" eventType="touchUpInside" id="smR-1c-L17"/>
+                                            <segue destination="nm0-kT-EF7" kind="presentation" identifier="NewTransaction" id="hc5-7L-MVW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35294117650000001" green="0.85882352939999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>

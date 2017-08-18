@@ -43,8 +43,10 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             self.present(alert, animated: true, completion: nil)
             return
         }
-        dataManager.submitTransaction(wallet: selectedWallet, destinationAddr: destination.text!, amount: Double(amount.text!)!)
-        
+        self.dismiss(animated: true, completion: {
+            self.dataManager.submitTransaction(wallet: self.selectedWallet, toAddress: self.destination.text!, amount: Double(self.amount.text!)!)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        })
     }
     
     @IBOutlet weak var walletSelectionTableView: UITableView!

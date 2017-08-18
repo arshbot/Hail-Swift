@@ -16,7 +16,7 @@ class DataManager {
     
     init(){
         self.coin = "Any"
-        //print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
+        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
     init(coin: String) {
@@ -26,10 +26,20 @@ class DataManager {
     }
     
     func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) {
+        
+        if ((wallet.aggregateCoinValue() - amount) < 0) {
+            let alert = UIAlertController(title: "Alert", message: "Insufficient Funds", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let tx = Transaction()
-        tx.coinValue = amount
+        tx.coinValue = amount - (2 * amount)
         tx.toAddress = toAddress
-        wallet.transactions.append(tx)
+        try! realm.write {
+            wallet.transactions.append(tx)
+        }
     
     }
     
@@ -145,12 +155,19 @@ class CryptoWallet: Object {
     }
     
     func aggregateCoinValue() -> Double {
-        let txs = self.transactions
-        var total = 0.0
-        for t in txs {
-            total += t.coinValue
+        
+        var balance = 0.0
+        var postedBalance = 0.0
+        
+        for tx in self.transactions {
+            if (self.addresses.contains(tx.toAddress)) {
+                balance += tx.coinValue
+            } else {
+                postedBalance += tx.coinValue
+            }
         }
-        return total
+        
+        return balance - postedBalance
     }
     
     func aggregateFiatValue() -> Double {

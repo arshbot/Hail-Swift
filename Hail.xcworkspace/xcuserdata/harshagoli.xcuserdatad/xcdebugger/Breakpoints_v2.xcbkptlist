@@ -151,11 +151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/DataManager.swift"
-            timestampString = "524532576.264197"
+            timestampString = "524536403.872413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "deleteWallet(wallet:)"
             landmarkType = "7">
             <Locations>
@@ -215,11 +215,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/DataManager.swift"
-            timestampString = "524532576.264197"
+            timestampString = "524536403.872413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "walletCount"
             landmarkType = "24">
          </BreakpointContent>
