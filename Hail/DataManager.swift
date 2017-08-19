@@ -96,6 +96,15 @@ class DataManager {
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
+    
+    func importWallet(coin: String) {
+        switch coin {
+        case "Bitcoin":
+            break;
+        default:
+           print("Error")
+        }
+    }
 }
 
 class WalletAddress: Object {

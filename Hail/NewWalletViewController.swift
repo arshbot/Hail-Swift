@@ -21,6 +21,19 @@ class NewWalletViewController: UIViewController {
     
     @IBOutlet weak var walletNameField: UITextField!
 
+    @IBOutlet weak var importWalletMasterKeyField: UITextField!
+    
+    
+    
+    @IBAction func importWallet(_ sender: Any) {
+        self.dismiss(animated: true, completion: {
+            let name = self.walletNameField.text
+            let masterkey = self.importWalletMasterKeyField.text
+            let coinType = self.coinType
+            
+        })
+    }
+    
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
             let name = self.walletNameField.text

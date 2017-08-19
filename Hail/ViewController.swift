@@ -26,6 +26,7 @@ class WorldViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //walletCollectionView.register(singleTXWalletReusableCell.self, forCellWithReuseIdentifier: "singleTXWalletReusableCell")
         walletCollectionView.delegate = walletCollectionView as! UICollectionViewDelegate
         walletCollectionView.dataSource = walletCollectionView as! UICollectionViewDataSource
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)

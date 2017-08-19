@@ -15,6 +15,11 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var amount: UITextField!
     
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    
     @IBAction func sendTx(_ sender: Any) {
         if (selectedWallet.name == "null") {
             let alert = UIAlertController(title: "Alert", message: "Please select a wallet", preferredStyle: UIAlertControllerStyle.alert)
