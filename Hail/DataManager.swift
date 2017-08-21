@@ -97,7 +97,7 @@ class DataManager {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
-    func importWallet(coin: String) {
+    func importWallet(coin: String, masterKey: String) {
         switch coin {
         case "Bitcoin":
             break;
