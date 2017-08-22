@@ -58,11 +58,11 @@ class DataManager {
         }
         
         let wallet = nodeManager.registerNewWallet(coin: coinType, identifier: id)
-        /*
+        
         try! realm.write {
             realm.add(wallet)
         }
-        */
+        
     }
     
     func getAllWallets(){
@@ -111,6 +111,11 @@ class DataManager {
 
 class WalletAddress: Object {
     dynamic var value: String = "null"
+    
+    convenience init(address: String) {
+        self.init()
+        self.value = address
+    }
 }
 
 class Transaction: Object {
@@ -120,6 +125,7 @@ class Transaction: Object {
     dynamic var fiatType: String = "null"
     dynamic var dateSent: Date = Date()
     dynamic var toAddress: WalletAddress? = WalletAddress()
+    
 
 }
 
@@ -130,6 +136,7 @@ class CryptoWallet: Object {
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"
     dynamic var token = "null"
+    
 
     let receiveAddresses = List<WalletAddress>()
     dynamic var changeAddress: WalletAddress? = WalletAddress()

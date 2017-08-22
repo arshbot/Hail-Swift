@@ -66,8 +66,10 @@ class NodeManager {
         }
     }
     
-    func registerNewWallet(coin: String, identifier:String, masterkey:String? = nil) {//-> CryptoWallet {
+    func registerNewWallet(coin: String, identifier:String, masterkey:String? = nil) -> CryptoWallet {
         let key = masterkey ?? "null"
+        var walletValue:CryptoWallet = CryptoWallet()
+        
         switch coin {
         case "Bitcoin":
             do {
@@ -124,14 +126,19 @@ class NodeManager {
                         if (error != nil) {
                             print(error)
                         } else {
-                            let httpResponse = response as? HTTPURLResponse
                             do {
-                                guard let article = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                guard let w = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
                                         print("error trying to convert data to JSON")
                                         return
                                 }
-                                print(article.description)
-                                
+                                let wallet = CryptoWallet()
+                                wallet.id = identifier
+                                wallet.token = w["token"] as! String
+                                let account = w["account"] as! [String : AnyObject]
+                                wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
+                                wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
+                                wallet.masterKey = account["accountKey"] as! String
+                                walletValue = wallet
                             } catch {
                                 print("error trying to convert data to JSON")
                                 return
@@ -140,33 +147,7 @@ class NodeManager {
                     })
                 
                     dataTask.resume()
-                    /*
-                    let opt = try HTTP.PUT(bitcoinNodeURL+"/wallet/\(identifier)", parameters: ["id":identifier, "witness":false])
-                    var success: Bool?
-                    
-                    //Inital auth
-                    var attempted = false
-                    opt.auth = { challenge in
-                        if !attempted {
-                            attempted = true
-                            return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
-                        }
-                        print("Bitcoin Auth Failed")
-                        return nil //auth failed, nil causes the request to be properly cancelled.
-                    }
-                    
-                    opt.start { response in
-                        if let err = response.error {
-                            print("error: \(err.localizedDescription)")
-                            success = false
-                        } else {
-                            print("Bitcoin connection successful")
-                            print("opt finished: \(response.description)")
-                            //print("data is: \(response.data)") access the response of the data with response.data
-                        }
-                    
-                    }
- */
+                    return walletValue
                 }
         
                 //return success!
@@ -176,9 +157,13 @@ class NodeManager {
             }
         default:
             print("coin variable not initialized in NodeManager")
+            return walletValue
             //return false
         }
         
+        //Return to silence annoying Xcode errors
+        return walletValue
+
     }
     
     func importWallet(coin: String, masterKey: String) {
