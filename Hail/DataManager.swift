@@ -11,7 +11,7 @@ import RealmSwift
 
 class DataManager {
     let realm = try! Realm()
-
+    let nodeManager = NodeManager()
     var coin: String!
     
     init(){
@@ -46,21 +46,23 @@ class DataManager {
     }
     
     func addWallet(name: String, coinType: String) {
-        var wallet = CryptoWallet()
-        wallet.name = name
-        wallet.coinType = coinType
-        wallet.id = String(arc4random())
-        //wallet.positionIndex = walletCount + 1
+        let id = String(arc4random())
         
-        let duplicateWallets = realm.objects(CryptoWallet.self).filter("id == %@", wallet.id)
+        
+        //TODO: add func that does this and check bcoin for duplicate Id
+        let duplicateWallets = realm.objects(CryptoWallet.self).filter("id == %@", id)
         
         if (duplicateWallets.count != 0) {
             print("Wallet input failed. Wallet with same id found")
-        } else {
-            try! realm.write {
-                realm.add(wallet)
-            }
+            return
         }
+        
+        let wallet = nodeManager.registerNewWallet(coin: coinType, identifier: id)
+        /*
+        try! realm.write {
+            realm.add(wallet)
+        }
+        */
     }
     
     func getAllWallets(){
@@ -127,8 +129,10 @@ class CryptoWallet: Object {
     dynamic var name: String = "null"
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"
+    dynamic var token = "null"
 
-    let addresses = List<WalletAddress>()
+    let receiveAddresses = List<WalletAddress>()
+    dynamic var changeAddress: WalletAddress? = WalletAddress()
     let transactions = List<Transaction>()
     
     //Index presents views starting at 1
@@ -144,7 +148,7 @@ class CryptoWallet: Object {
         var postedBalance = 0.0
         
         for tx in self.transactions {
-            if (self.addresses.contains(tx.toAddress!)) {
+            if (self.receiveAddresses.contains(tx.toAddress!)) {
                 balance += tx.coinValue
             } else {
                 postedBalance += tx.coinValue

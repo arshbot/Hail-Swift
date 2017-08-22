@@ -13,7 +13,7 @@ import SwiftHTTP
 
 class NodeManager {
     
-    let bitcoinNodeURL: String = "http://127.0.0.1:18332/"
+    let bitcoinNodeURL: String = "http://127.0.0.1:18332"
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
     
@@ -73,8 +73,9 @@ class NodeManager {
             do {
                 
                 //If masterkey is present, import wallet
-                if (masterkey != "null") {
-                    let opt = try HTTP.POST(bitcoinNodeURL+"/wallet/\(identifier)/import", parameters: ["account":"primary", "key":masterkey!])
+                if (key != "null") {
+                    let params: [String: String] = ["account":"primary", "key":key]
+                    let opt = try HTTP.POST(bitcoinNodeURL+"/wallet/\(identifier)/import", parameters: params)
                     var createdWallet = CryptoWallet()
                     
                     //Inital auth
@@ -101,6 +102,36 @@ class NodeManager {
                     
                 //If not, create new wallet
                 } else {
+                    let headers = [
+                        "authorization": "Basic eDppYW1zYXRvc2hp",
+                        "content-type": "application/javascript",
+                        "cache-control": "no-cache",
+                    ]
+                    
+                    let postData = NSData(data: "{\"id\": \(identifier), \"witness\": false}"
+                    .data(using: String.Encoding.utf8)!)
+                    
+                
+                    let request = NSMutableURLRequest(url: NSURL(string: "\(bitcoinNodeURL)/wallet/\(identifier)")! as URL,
+                        cachePolicy: .useProtocolCachePolicy,
+                        timeoutInterval: 10.0)
+                    request.httpMethod = "PUT"
+                    request.allHTTPHeaderFields = headers
+                    request.httpBody = postData as Data
+                
+                    let session = URLSession.shared
+                    let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                        if (error != nil) {
+                            print(error)
+                        } else {
+                            let httpResponse = response as? HTTPURLResponse
+                            print(type(of: httpResponse))
+                            print(httpResponse)
+                        }
+                    })
+                
+                    dataTask.resume()
+                    /*
                     let opt = try HTTP.PUT(bitcoinNodeURL+"/wallet/\(identifier)", parameters: ["id":identifier, "witness":false])
                     var success: Bool?
                     
@@ -126,6 +157,7 @@ class NodeManager {
                         }
                     
                     }
+ */
                 }
         
                 //return success!
