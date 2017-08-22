@@ -125,8 +125,17 @@ class NodeManager {
                             print(error)
                         } else {
                             let httpResponse = response as? HTTPURLResponse
-                            print(type(of: httpResponse))
-                            print(httpResponse)
+                            do {
+                                guard let article = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                        print("error trying to convert data to JSON")
+                                        return
+                                }
+                                print(article.description)
+                                
+                            } catch {
+                                print("error trying to convert data to JSON")
+                                return
+                            }
                         }
                     })
                 

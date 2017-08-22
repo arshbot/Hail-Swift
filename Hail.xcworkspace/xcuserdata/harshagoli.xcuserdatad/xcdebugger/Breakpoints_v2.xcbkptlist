@@ -199,7 +199,7 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NewTransactionViewController.swift"
-                  timestampString = "525063398.246087"
+                  timestampString = "525064461.016407"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -214,7 +214,7 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NewTransactionViewController.swift"
-                  timestampString = "525063398.247522"
+                  timestampString = "525064461.018514"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
@@ -279,7 +279,7 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NodeManager.swift"
-                  timestampString = "525063398.265379"
+                  timestampString = "525064461.029304"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "70"
@@ -294,7 +294,7 @@
                   moduleName = "Hail"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harshagoli/Projects/Hail/Hail/NodeManager.swift"
-                  timestampString = "525063398.266905"
+                  timestampString = "525064461.03113"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -302,6 +302,22 @@
                   offsetFromSymbolStart = "7">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hail/NodeManager.swift"
+            timestampString = "525064459.927682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "registerNewWallet(coin:identifier:masterkey:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
