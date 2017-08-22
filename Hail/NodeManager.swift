@@ -9,10 +9,10 @@
 import Foundation
 import SwiftHTTP
 
-//TODO:
+//TODO: get rid SwiftHTTP stuff
 
 class NodeManager {
-    
+
     let bitcoinNodeURL: String = "http://127.0.0.1:18332"
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
@@ -66,9 +66,17 @@ class NodeManager {
         }
     }
     
-    func registerNewWallet(coin: String, identifier:String, masterkey:String? = nil) -> CryptoWallet {
+    //TODO: Rename this function to registerNewWalletWithNode
+    func registerNewWallet(coin: String, identifier:String, name:String, masterkey:String? = nil, completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         let key = masterkey ?? "null"
-        var walletValue:CryptoWallet = CryptoWallet()
+        var walletValue:CryptoWallet = CryptoWallet() {
+            willSet(wal) {
+                print("about to set walletValue")
+            }
+            didSet {
+                print("Set walletValue")
+            }
+        }
         
         switch coin {
         case "Bitcoin":
@@ -78,7 +86,6 @@ class NodeManager {
                 if (key != "null") {
                     let params: [String: String] = ["account":"primary", "key":key]
                     let opt = try HTTP.POST(bitcoinNodeURL+"/wallet/\(identifier)/import", parameters: params)
-                    var createdWallet = CryptoWallet()
                     
                     //Inital auth
                     var attempted = false
@@ -131,14 +138,9 @@ class NodeManager {
                                         print("error trying to convert data to JSON")
                                         return
                                 }
-                                let wallet = CryptoWallet()
-                                wallet.id = identifier
-                                wallet.token = w["token"] as! String
-                                let account = w["account"] as! [String : AnyObject]
-                                wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
-                                wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
-                                wallet.masterKey = account["accountKey"] as! String
-                                walletValue = wallet
+                                
+                                completionHandler(w)
+                                
                             } catch {
                                 print("error trying to convert data to JSON")
                                 return
@@ -147,7 +149,6 @@ class NodeManager {
                     })
                 
                     dataTask.resume()
-                    return walletValue
                 }
         
                 //return success!
@@ -157,12 +158,11 @@ class NodeManager {
             }
         default:
             print("coin variable not initialized in NodeManager")
-            return walletValue
             //return false
         }
         
         //Return to silence annoying Xcode errors
-        return walletValue
+        //return walletValue
 
     }
     

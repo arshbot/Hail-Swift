@@ -11,6 +11,7 @@ import RealmSwift
 
 class DataManager {
     let realm = try! Realm()
+    let thread = Thread.current
     let nodeManager = NodeManager()
     var coin: String!
     
@@ -56,17 +57,37 @@ class DataManager {
             print("Wallet input failed. Wallet with same id found")
             return
         }
-        
-        let wallet = nodeManager.registerNewWallet(coin: coinType, identifier: id)
-        
-        try! realm.write {
-            realm.add(wallet)
-        }
+        nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, completionHandler: {
+            returnedJSON in
+            self.thread.async {
+                let wallet = CryptoWallet()
+                wallet.id = returnedJSON["id"] as! String
+                wallet.token = returnedJSON["token"] as! String
+                let account = returnedJSON["account"] as! [String : AnyObject]
+                wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
+                wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
+                wallet.masterKey = account["accountKey"] as! String
+                wallet.coinType = coinType
+                wallet.name = name
+                
+                self.saveWallet(wallet: wallet)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            }
+        })
         
     }
     
-    func getAllWallets(){
-        
+    func saveWallet(wallet: CryptoWallet){
+        if (wallet.id == "null") {
+            print("wallet creation failed")
+            return
+        }
+        try! realm.write {
+            realm.add(wallet)
+        }
+    }
+    
+    func getAllWallets() {
     }
     
     var walletCount: Int {
@@ -136,7 +157,7 @@ class CryptoWallet: Object {
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"
     dynamic var token = "null"
-    
+    dynamic var network = "null"
 
     let receiveAddresses = List<WalletAddress>()
     dynamic var changeAddress: WalletAddress? = WalletAddress()
@@ -183,6 +204,41 @@ class CryptoWallet: Object {
     
     func getLastTransaction() -> Transaction {
         return self.transactions.last!
+    }
+}
+
+
+extension Thread {
+    
+    private typealias Block = @convention(block) () -> Void
+    
+    /**
+     Execute block, used internally for async/sync functions.
+     
+     - parameter block: Process to be executed.
+     */
+    @objc private func run(block: Block) {
+        block()
+    }
+    
+    /**
+     Perform block on current thread asynchronously.
+     
+     - parameter block: Process to be executed.
+     */
+    public func async(execute: Block) {
+        guard Thread.current != self else { return execute() }
+        perform(#selector(run(block:)), on: self, with: execute, waitUntilDone: false)
+    }
+    
+    /**
+     Perform block on current thread synchronously.
+     
+     - parameter block: Process to be executed.
+     */
+    public func sync(execute: Block) {
+        guard Thread.current != self else { return execute() }
+        perform(#selector(run(block:)), on: self, with: execute, waitUntilDone: true)
     }
 }
 
