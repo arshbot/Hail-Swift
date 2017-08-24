@@ -76,6 +76,13 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyWalletReusableCell", for: indexPath) as! emptyWalletReusableCell
                 cell.wallet = wallet
                 cell.coinType!.text = wallet.coinType
+                cell.name.text = wallet.name
+                cell.value.text = String(wallet.aggregateCoinValue())
+                cell.txs.text = String(wallet.transactions.count)
+                cell.network.text = wallet.network
+                cell.id.text = wallet.id
+                cell.fiatValue.text = String(wallet.aggregateFiatValue())
+                cell.addr.text = wallet.receiveAddresses.first?.value
                 return cell
 
             case 1:
@@ -161,6 +168,20 @@ class emptyWalletReusableCell: UICollectionViewCell {
     @IBAction func deleteWallet(_ sender: Any) {
         dataManager.deleteWallet(wallet: wallet)
     }
+    
+    @IBOutlet weak var name: UILabel!
+    
+    @IBOutlet weak var value: UILabel!
+    
+    @IBOutlet weak var txs: UILabel!
+
+    @IBOutlet weak var network: UILabel!
+    
+    @IBOutlet weak var id: UILabel!
+    
+    @IBOutlet weak var fiatValue: UILabel!
+    
+    @IBOutlet weak var addr: UILabel!
     
     var wallet: CryptoWallet = CryptoWallet()
     
