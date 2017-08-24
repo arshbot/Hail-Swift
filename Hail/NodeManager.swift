@@ -24,44 +24,38 @@ class NodeManager {
     }
     
     func establishConnection() { //-> Bool {
-        switch coin {
-        case "Bitcoin":
-            do {
-                let opt = try HTTP.GET(bitcoinNodeURL)
-                var success: Bool?
-                
-                //Inital auth
-                var attempted = false
-                opt.auth = { challenge in
-                    if !attempted {
-                        attempted = true
-                        return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
-                    }
-                    print("Bitcoin Auth Failed")
-                    return nil //auth failed, nil causes the request to be properly cancelled.
+        do {
+            let opt = try HTTP.GET(bitcoinNodeURL)
+            var success: Bool?
+            
+            //Inital auth
+            var attempted = false
+            opt.auth = { challenge in
+                if !attempted {
+                    attempted = true
+                    return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
                 }
-                
-                opt.start { response in
-                    if let err = response.error {
-                        print("error: \(err.localizedDescription)")
-                        success = false
-                    } else {
-                        print("Bitcoin connection successful")
-                        print("opt finished: \(response.description)")
-                        //print("data is: \(response.data)") access the response of the data with response.data
-                        if (success == nil) {
-                            success = true
-                        }
-                    }
-                   
-                }
-                //return success!
-            } catch let error {
-                print("got an error creating the request: \(error)")
-                //return false
+                print("Bitcoin Auth Failed")
+                return nil //auth failed, nil causes the request to be properly cancelled.
             }
-        default:
-            print("coin variable not initialized in NodeManager")
+            
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                    success = false
+                } else {
+                    print("Bitcoin connection successful")
+                    print("opt finished: \(response.description)")
+                    //print("data is: \(response.data)") access the response of the data with response.data
+                    if (success == nil) {
+                        success = true
+                    }
+                }
+                
+            }
+            //return success!
+        } catch let error {
+            print("got an error creating the request: \(error)")
             //return false
         }
     }
@@ -84,31 +78,69 @@ class NodeManager {
                 
                 //If masterkey is present, import wallet
                 if (key != "null") {
-                    let params: [String: String] = ["account":"primary", "key":key]
-                    let opt = try HTTP.POST(bitcoinNodeURL+"/wallet/\(identifier)/import", parameters: params)
                     
-                    //Inital auth
-                    var attempted = false
-                    opt.auth = { challenge in
-                        if !attempted {
-                            attempted = true
-                            return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
-                        }
-                        print("Bitcoin Auth Failed")
-                        return nil //auth failed, nil causes the request to be properly cancelled.
-                    }
+                    let headers = [
+                        "content-type": "application/json",
+                        "authorization": "Basic eDppYW1zYXRvc2hp",
+                        "cache-control": "no-cache",
+                    ]
                     
-                    opt.start { response in
-                        if let err = response.error {
-                            print("error: \(err.localizedDescription)")
+                    let postData = NSData(data: "{\"masterLey\": \(identifier)}"
+                        .data(using: String.Encoding.utf8)!)
+                    
+                    let request = NSMutableURLRequest(url: NSURL(string: "http://\(bitcoinNodeURL)/wallet/\(identifier)")! as URL,
+                                                      cachePolicy: .useProtocolCachePolicy,
+                                                      timeoutInterval: 10.0)
+                    request.httpMethod = "PUT"
+                    request.allHTTPHeaderFields = headers
+                    request.httpBody = postData as Data
+                    
+                    let session = URLSession.shared
+                    let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                        if (error != nil) {
+                            print(error)
                         } else {
-                            print("Bitcoin connection successful")
-                            print("opt finished: \(response.description)")
-                            //print("data is: \(response.data)") access the response of the data with response.data
+                            do {
+                                guard let w = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                    print("error trying to convert data to JSON")
+                                    return
+                                }
+                                
+                                completionHandler(w)
+                                
+                            } catch {
+                                print("error trying to convert data to JSON")
+                                return
+                            }
                         }
-                        
-                    }
+                    })
                     
+                    dataTask.resume()
+//                    let params: [String: String] = ["account":"primary", "key":key]
+//                    let opt = try HTTP.POST(bitcoinNodeURL+"/wallet/\(identifier)/import", parameters: params)
+//                    
+//                    //Inital auth
+//                    var attempted = false
+//                    opt.auth = { challenge in
+//                        if !attempted {
+//                            attempted = true
+//                            return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
+//                        }
+//                        print("Bitcoin Auth Failed")
+//                        return nil //auth failed, nil causes the request to be properly cancelled.
+//                    }
+//                    
+//                    opt.start { response in
+//                        if let err = response.error {
+//                            print("error: \(err.localizedDescription)")
+//                        } else {
+//                            print("Bitcoin connection successful")
+//                            print("opt finished: \(response.description)")
+//                            //print("data is: \(response.data)") access the response of the data with response.data
+//                        }
+//                        
+//                    }
+//                    
                 //If not, create new wallet
                 } else {
                     let headers = [

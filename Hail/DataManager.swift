@@ -46,7 +46,9 @@ class DataManager {
         return true
     }
     
-    func addWallet(name: String, coinType: String) {
+    func addWallet(name: String, coinType: String, masterKey:String? = nil) {
+        let key = masterKey ?? "null"
+
         let id = String(arc4random())
         
         
@@ -57,23 +59,44 @@ class DataManager {
             print("Wallet input failed. Wallet with same id found")
             return
         }
-        nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, completionHandler: {
-            returnedJSON in
-            self.thread.async {
-                let wallet = CryptoWallet()
-                wallet.id = returnedJSON["id"] as! String
-                wallet.token = returnedJSON["token"] as! String
-                let account = returnedJSON["account"] as! [String : AnyObject]
-                wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
-                wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
-                wallet.masterKey = account["accountKey"] as! String
-                wallet.coinType = coinType
-                wallet.name = name
-                
-                self.saveWallet(wallet: wallet)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-            }
-        })
+        
+        if (key == "null") {
+            nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, masterkey: key, completionHandler: {
+                returnedJSON in
+                self.thread.async {
+                    let wallet = CryptoWallet()
+                    wallet.id = returnedJSON["id"] as! String
+                    wallet.token = returnedJSON["token"] as! String
+                    let account = returnedJSON["account"] as! [String : AnyObject]
+                    wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
+                    wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
+                    wallet.masterKey = account["accountKey"] as! String
+                    wallet.coinType = coinType
+                    wallet.name = name
+                    
+                    self.saveWallet(wallet: wallet)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                }
+            })
+        } else {
+            nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, completionHandler: {
+                returnedJSON in
+                self.thread.async {
+                    let wallet = CryptoWallet()
+                    wallet.id = returnedJSON["id"] as! String
+                    wallet.token = returnedJSON["token"] as! String
+                    let account = returnedJSON["account"] as! [String : AnyObject]
+                    wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
+                    wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
+                    wallet.masterKey = account["accountKey"] as! String
+                    wallet.coinType = coinType
+                    wallet.name = name
+                    
+                    self.saveWallet(wallet: wallet)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                }
+            })
+        }
         
     }
     
