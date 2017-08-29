@@ -15,7 +15,10 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
     
     @IBAction func generateAddress(_ sender: Any) {
         if (selectedWallet.name == "null") {
-            
+            let alert = UIAlertController(title: "Alert", message: "Please select a wallet", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
     }
     
