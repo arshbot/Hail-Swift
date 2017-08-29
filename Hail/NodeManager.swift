@@ -241,4 +241,41 @@ class NodeManager {
 
     }
     
+    func generateNewAddress(coin: String, identifier:String, account:String="default"){
+        switch coin {
+        case "Bitcoin":
+            let headers = [
+                "content-type": "application/json",
+                "authorization": "Basic eDppYW1zYXRvc2hp",
+                "cache-control": "no-cache",
+                "postman-token": "89ab13bd-6bcf-26ad-a46d-bea14544e482"
+            ]
+            
+            let postData = NSData(data: "{\"account\": \(account)}"
+            .data(using: String.Encoding.utf8)!)
+            
+            let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:18332/wallet/\(identifier)/address")! as URL,
+                                              cachePolicy: .useProtocolCachePolicy,
+                                              timeoutInterval: 10.0)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = headers
+            request.httpBody = postData as Data
+            
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                if (error != nil) {
+                    print(error)
+                } else {
+                    let httpResponse = response as? HTTPURLResponse
+                    print(data)
+                }
+            })
+            
+            dataTask.resume()
+        default:
+            print("Error")
+        }
+        
+    }
+    
 }

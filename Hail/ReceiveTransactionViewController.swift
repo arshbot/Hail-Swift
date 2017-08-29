@@ -20,6 +20,8 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
             self.present(alert, animated: true, completion: nil)
             return
         }
+        
+        
     }
     
     @IBOutlet weak var addressLabel: UILabel!
