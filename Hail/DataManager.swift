@@ -18,11 +18,18 @@ class DataManager {
         print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
-    func getNewAddressfor(id:String, coin: String, completionHandler:((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress)}) {
+    func getNewAddressfor(id:String, coin: String, completionHandler:@escaping ((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress.value)}) {
         nodeManager.generateNewAddress(coin: coin, identifier: id, completionHandler: {
             returnedJSON in
             self.thread.async {
-                print(returnedJSON.description)
+                //Add to db
+                let addr = WalletAddress(address: returnedJSON["address"] as! String)
+                let wallet = self.realm.objects(CryptoWallet.self).filter("id == %@", id).first
+                try! realm.write {
+                    wallet?.receiveAddresses.append(addr)
+                }
+                //change view shit
+                completionHandler(addr)
             }
         })
     }
