@@ -92,13 +92,13 @@
 				C1E031371F43782600A03BE6 /* NewTransactionViewController.swift */,
 				C1274B7D1F2FF77700D5D6A8 /* WorldViewController.swift */,
 				C1274B8F1F34108200D5D6A8 /* NewWalletViewController.swift */,
+				C13A65211F55BFD000A92741 /* ReceiveTransactionViewController.swift */,
 				C1274B911F3522B700D5D6A8 /* DataManager.swift */,
 				C1E031351F40C82C00A03BE6 /* NodeManager.swift */,
 				C1274B7F1F2FF77700D5D6A8 /* Main.storyboard */,
 				C1274B821F2FF77700D5D6A8 /* Assets.xcassets */,
 				C1274B841F2FF77700D5D6A8 /* LaunchScreen.storyboard */,
 				C1274B871F2FF77700D5D6A8 /* Info.plist */,
-				C13A65211F55BFD000A92741 /* ReceiveTransactionViewController.swift */,
 			);
 			path = Hail;
 			sourceTree = "<group>";

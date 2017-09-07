@@ -241,7 +241,8 @@ class NodeManager {
 
     }
     
-    func generateNewAddress(coin: String, identifier:String, account:String="default"){
+    //Returns the new address in the completion handler
+    func generateNewAddress(coin: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         switch coin {
         case "Bitcoin":
             let headers = [
@@ -266,8 +267,18 @@ class NodeManager {
                 if (error != nil) {
                     print(error)
                 } else {
-                    let httpResponse = response as? HTTPURLResponse
-                    print(data)
+                    do {
+                        guard let w = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                            print("error trying to convert data to JSON")
+                            return
+                        }
+                        
+                        completionHandler(w)
+                        
+                    } catch {
+                        print("error trying to convert data to JSON")
+                        return
+                    }
                 }
             })
             

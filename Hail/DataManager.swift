@@ -26,6 +26,15 @@ class DataManager {
 
     }
     
+    func getNewAddressfor(id:String) -> WalletAddress {
+        nodeManager.generateNewAddress(coin: coin, identifier: id, completionHandler: {
+            returnedJSON in
+            self.thread.async {
+                print(returnedJSON)
+            }
+        })
+    }
+    
     func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) -> Bool {
         
         if ((wallet.aggregateCoinValue() - amount) < 0) {
