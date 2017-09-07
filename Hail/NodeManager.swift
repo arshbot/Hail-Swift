@@ -251,28 +251,6 @@ class NodeManager {
                 "cache-control": "no-cache",
             ]
             
-//            let parameters = ["account": "default"] as [String : Any]
-//            
-//            let postData = do JSONSerialization.data(withJSONObject: parameters, options: []) else {
-//                print("error trying to convert data to JSON")
-//                return
-//            }
-//            
-//            do {
-//                guard let postData = try JSONSerialization.data(withJSONObject: parameters, options: []) as? [String: AnyObject] else {
-//                    return
-//                }
-//                
-//                
-//                
-//                
-//                
-//            } catch {
-//                print("Error you are a fag")
-//                return
-//            }
-            
-            
             let postData = NSData(data: "{\"account\": \"\(account)\"}"
             .data(using: String.Encoding.utf8)!)
             
