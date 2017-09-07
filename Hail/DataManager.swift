@@ -13,24 +13,16 @@ class DataManager {
     let realm = try! Realm()
     let thread = Thread.current
     let nodeManager = NodeManager()
-    var coin: String!
     
     init(){
-        self.coin = "Any"
         print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
-    init(coin: String) {
-        self.coin = coin
-        print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)!)
-
-    }
-    
-    func getNewAddressfor(id:String) -> WalletAddress {
+    func getNewAddressfor(id:String, coin: String, completionHandler:((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress)}) {
         nodeManager.generateNewAddress(coin: coin, identifier: id, completionHandler: {
             returnedJSON in
             self.thread.async {
-                print(returnedJSON)
+                print(returnedJSON.description)
             }
         })
     }
@@ -55,7 +47,7 @@ class DataManager {
         return true
     }
     
-    func addWallet(name: String, coinType: String, masterKey:String? = nil) {
+    func addWallet(name: String, coin: String, masterKey:String? = nil) {
         let key = masterKey ?? "null"
 
         let id = String(arc4random())
@@ -70,7 +62,7 @@ class DataManager {
         }
         
         if (key == "null") {
-            nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, masterkey: key, completionHandler: {
+            nodeManager.registerNewWallet(coin: coin, identifier: id, name: name, masterkey: key, completionHandler: {
                 returnedJSON in
                 self.thread.async {
                     let wallet = CryptoWallet()
@@ -80,7 +72,7 @@ class DataManager {
                     wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
                     wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
                     wallet.masterKey = account["accountKey"] as! String
-                    wallet.coinType = coinType
+                    wallet.coinType = coin
                     wallet.name = name
                     
                     self.saveWallet(wallet: wallet)
@@ -88,7 +80,7 @@ class DataManager {
                 }
             })
         } else {
-            nodeManager.registerNewWallet(coin: coinType, identifier: id, name: name, completionHandler: {
+            nodeManager.registerNewWallet(coin: coin, identifier: id, name: name, completionHandler: {
                 returnedJSON in
                 self.thread.async {
                     let wallet = CryptoWallet()
@@ -98,7 +90,7 @@ class DataManager {
                     wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
                     wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
                     wallet.masterKey = account["accountKey"] as! String
-                    wallet.coinType = coinType
+                    wallet.coinType = coin
                     wallet.name = name
                     
                     self.saveWallet(wallet: wallet)

@@ -11,6 +11,8 @@ import UIKit
 
 class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let dataManager = DataManager(coin: "All")
+    
     @IBOutlet weak var walletSelectionTableView: UITableView!
     
     @IBAction func generateAddress(_ sender: Any) {
@@ -21,13 +23,11 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
             return
         }
         
-        
+        self.dataManager.getNewAddressfor(id: selectedWallet.id)
     }
     
     @IBOutlet weak var addressLabel: UILabel!
-    
-    let dataManager = DataManager(coin: "All")
-    
+        
     var wallets:[CryptoWallet] = []
     
     var selectedWallet = CryptoWallet()
