@@ -23,10 +23,17 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
             return
         }
         
-        self.dataManager.getNewAddressfor(id: selectedWallet.id, coin: selectedWallet.coinType)
+        self.dataManager.getNewAddressfor(id: selectedWallet.id, coin: selectedWallet.coinType, completionHandler: {
+            returnedAddr in
+            self.addressLabel.text = returnedAddr.value
+        })
     }
     
     @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
         
     var wallets:[CryptoWallet] = []
     
@@ -34,6 +41,7 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressLabel.text = ""
         walletSelectionTableView.delegate = self
         walletSelectionTableView.dataSource = self
         self.wallets = Array(dataManager.getWalletsOrderedByIndex().reversed())

@@ -167,11 +167,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/DataManager.swift"
-            timestampString = "526511325.016815"
+            timestampString = "526512848.441006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "saveWallet(wallet:)"
             landmarkType = "7">
          </BreakpointContent>

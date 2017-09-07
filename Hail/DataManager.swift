@@ -25,7 +25,7 @@ class DataManager {
                 //Add to db
                 let addr = WalletAddress(address: returnedJSON["address"] as! String)
                 let wallet = self.realm.objects(CryptoWallet.self).filter("id == %@", id).first
-                try! realm.write {
+                try! self.realm.write {
                     wallet?.receiveAddresses.append(addr)
                 }
                 //change view shit
