@@ -249,13 +249,34 @@ class NodeManager {
                 "content-type": "application/json",
                 "authorization": "Basic eDppYW1zYXRvc2hp",
                 "cache-control": "no-cache",
-                "postman-token": "89ab13bd-6bcf-26ad-a46d-bea14544e482"
             ]
             
-            let postData = NSData(data: "{\"account\": \(account)}"
+//            let parameters = ["account": "default"] as [String : Any]
+//            
+//            let postData = do JSONSerialization.data(withJSONObject: parameters, options: []) else {
+//                print("error trying to convert data to JSON")
+//                return
+//            }
+//            
+//            do {
+//                guard let postData = try JSONSerialization.data(withJSONObject: parameters, options: []) as? [String: AnyObject] else {
+//                    return
+//                }
+//                
+//                
+//                
+//                
+//                
+//            } catch {
+//                print("Error you are a fag")
+//                return
+//            }
+            
+            
+            let postData = NSData(data: "{\"account\": \"\(account)\"}"
             .data(using: String.Encoding.utf8)!)
             
-            let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:18332/wallet/\(identifier)/address")! as URL,
+            let request = NSMutableURLRequest(url: NSURL(string: "\(bitcoinNodeURL)/wallet/\(identifier)/address")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 10.0)
             request.httpMethod = "POST"

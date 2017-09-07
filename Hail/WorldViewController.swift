@@ -47,7 +47,7 @@ class WorldViewController: UIViewController {
 
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
     //var wallets:[NSObject] = []
     var isEmpty: Bool = false
     
@@ -134,7 +134,7 @@ class walletReusableCell: UICollectionViewCell {
     
     var wallet: CryptoWallet = CryptoWallet()
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
 
     
 }
@@ -155,7 +155,7 @@ class singleTXWalletReusableCell: UICollectionViewCell {
     
     var wallet: CryptoWallet = CryptoWallet()
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
 
 }
 
@@ -185,5 +185,5 @@ class emptyWalletReusableCell: UICollectionViewCell {
     
     var wallet: CryptoWallet = CryptoWallet()
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
 }

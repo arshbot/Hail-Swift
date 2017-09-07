@@ -11,7 +11,7 @@ import UIKit
 
 class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
     
     @IBOutlet weak var walletSelectionTableView: UITableView!
     
@@ -23,7 +23,7 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
             return
         }
         
-        self.dataManager.getNewAddressfor(id: selectedWallet.id)
+        self.dataManager.getNewAddressfor(id: selectedWallet.id, coin: selectedWallet.coinType)
     }
     
     @IBOutlet weak var addressLabel: UILabel!

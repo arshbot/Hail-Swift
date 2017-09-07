@@ -63,7 +63,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var walletSelectionTableView: UITableView!
     
-    let dataManager = DataManager(coin: "All")
+    let dataManager = DataManager()
     
     var wallets:[CryptoWallet] = []
     
