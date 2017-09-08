@@ -103,8 +103,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
 
 class walletReusableCell: UICollectionViewCell {
     
-    //Begin Import things
-    
+    //Begin IB Outlets
     @IBOutlet weak var coinValueComprehensive: UILabel!
   
     @IBOutlet weak var fiatValueComprehensive: UILabel!
@@ -129,7 +128,8 @@ class walletReusableCell: UICollectionViewCell {
 }
 
 class singleTXWalletReusableCell: UICollectionViewCell {
-
+    
+    //Begin IB Outlets
     @IBOutlet weak var coinValueComprehensive: UILabel!
     
     @IBOutlet weak var fiatValueComprehensive: UILabel!
@@ -152,6 +152,7 @@ class singleTXWalletReusableCell: UICollectionViewCell {
 
 class emptyWalletReusableCell: UICollectionViewCell {
     
+    //Begin IB Outlets
     @IBOutlet weak var coinType: UILabel!
     
     @IBAction func deleteWallet(_ sender: Any) {
