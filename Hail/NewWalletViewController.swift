@@ -48,15 +48,10 @@ class NewWalletViewController: UIViewController {
     
     @IBAction func bitcoinSelected(_ sender: Any) {
         selectCoin(network: "Bitcoin")
-        //self.performSegue(withIdentifier: "NewWallet", sender: self)
-
     }
     
     @IBAction func litecoinSelected(_ sender: Any) {
         selectCoin(network: "Litecoin")
-
-        //self.performSegue(withIdentifier: "NewWallet", sender: self)
-
     }
     
     override func viewDidLoad() {
@@ -68,7 +63,6 @@ class NewWalletViewController: UIViewController {
     func selectCoin(network: String) {
         litecoinSelectedHue.backgroundColor = UIColor.clear
         bitcoinSelectedHue.backgroundColor = UIColor.clear
-        network = network
         if(network == "Bitcoin") {
             bitcoinSelectedHue.backgroundColor = UIColor.blue
         }
