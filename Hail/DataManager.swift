@@ -18,8 +18,8 @@ class DataManager {
         print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
-    func getNewAddressfor(id:String, coin: String, completionHandler:@escaping ((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress.value)}) {
-        nodeManager.generateNewAddress(coin: coin, identifier: id, completionHandler: {
+    func getNewAddressfor(id:String, network: String, completionHandler:@escaping ((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress.value)}) {
+        nodeManager.generateNewAddress(network: network, identifier: id, completionHandler: {
             returnedJSON in
             self.thread.async {
                 //Add to db
@@ -54,7 +54,7 @@ class DataManager {
         return true
     }
     
-    func addWallet(name: String, coin: String, masterKey:String? = nil) {
+    func addWallet(name: String, network: String, masterKey:String? = nil) {
         let key = masterKey ?? "null"
 
         let id = String(arc4random())
@@ -69,7 +69,7 @@ class DataManager {
         }
         
         if (key == "null") {
-            nodeManager.registerNewWallet(coin: coin, identifier: id, name: name, masterkey: key, completionHandler: {
+            nodeManager.registerNewWallet(network: network, identifier: id, name: name, masterkey: key, completionHandler: {
                 returnedJSON in
                 self.thread.async {
                     let wallet = CryptoWallet()
@@ -79,7 +79,7 @@ class DataManager {
                     wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
                     wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
                     wallet.masterKey = account["accountKey"] as! String
-                    wallet.coinType = coin
+                    wallet.network = network
                     wallet.name = name
                     
                     self.saveWallet(wallet: wallet)
@@ -87,7 +87,7 @@ class DataManager {
                 }
             })
         } else {
-            nodeManager.registerNewWallet(coin: coin, identifier: id, name: name, completionHandler: {
+            nodeManager.registerNewWallet(network: network, identifier: id, name: name, completionHandler: {
                 returnedJSON in
                 self.thread.async {
                     let wallet = CryptoWallet()
@@ -97,7 +97,7 @@ class DataManager {
                     wallet.changeAddress = WalletAddress(address: account["changeAddress"] as! String)
                     wallet.receiveAddresses.append(WalletAddress(address: account["receiveAddress"] as! String))
                     wallet.masterKey = account["accountKey"] as! String
-                    wallet.coinType = coin
+                    wallet.network = network
                     wallet.name = name
                     
                     self.saveWallet(wallet: wallet)
@@ -127,12 +127,12 @@ class DataManager {
         }
     }
     
-    func getNumberOfWalletsFor(coin: String) -> Int {
-        return realm.objects(CryptoWallet.self).filter("coinType == %@", coin).count
+    func getNumberOfWalletsFor(network: String) -> Int {
+        return realm.objects(CryptoWallet.self).filter("network == %@", network).count
     }
     
-    func getWalletsFor(coin: String) -> Results<CryptoWallet> {
-        return realm.objects(CryptoWallet.self).filter("coinType == %@", coin)
+    func getWalletsFor(network: String) -> Results<CryptoWallet> {
+        return realm.objects(CryptoWallet.self).filter("network == %@", network)
     }
     
     func getWalletsOrderedByIndex() -> Results<CryptoWallet> {
@@ -151,8 +151,8 @@ class DataManager {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
-    func importWallet(coin: String, masterKey: String) {
-        switch coin {
+    func importWallet(network: String, masterKey: String) {
+        switch network {
         case "Bitcoin":
             break;
         default:
@@ -183,7 +183,7 @@ class Transaction: Object {
 
 
 class CryptoWallet: Object {
-    dynamic var coinType: String = "null"
+    dynamic var network: String = "null"
     dynamic var name: String = "null"
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"

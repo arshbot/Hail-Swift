@@ -11,19 +11,14 @@ import UIKit
 
 class NewWalletViewController: UIViewController {
     
+    //Begin IB outlets
     @IBOutlet weak var litecoinSelectedHue: UIView!
     
     @IBOutlet weak var bitcoinSelectedHue: UIView!
     
-    var network: String = "null"
-    
-    let dataManager = DataManager()
-    
     @IBOutlet weak var walletNameField: UITextField!
 
     @IBOutlet weak var importWalletMasterKeyField: UITextField!
-    
-    
     
     @IBAction func importWallet(_ sender: Any) {
         self.dismiss(animated: true, completion: {
@@ -39,11 +34,9 @@ class NewWalletViewController: UIViewController {
         self.dismiss(animated: true, completion: {
             self.dataManager.addWallet(name: self.walletNameField.text, network: self.network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-
         })
         
     }
-    
     
     @IBAction func bitcoinSelected(_ sender: Any) {
         selectCoin(network: "Bitcoin")
@@ -52,6 +45,10 @@ class NewWalletViewController: UIViewController {
     @IBAction func litecoinSelected(_ sender: Any) {
         selectCoin(network: "Litecoin")
     }
+    
+    var network: String = "null"
+    
+    let dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +59,7 @@ class NewWalletViewController: UIViewController {
     func selectCoin(network: String) {
         litecoinSelectedHue.backgroundColor = UIColor.clear
         bitcoinSelectedHue.backgroundColor = UIColor.clear
+        
         if(network == "Bitcoin") {
             bitcoinSelectedHue.backgroundColor = UIColor.blue
         }

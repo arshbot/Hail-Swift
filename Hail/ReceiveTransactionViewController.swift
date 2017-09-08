@@ -11,14 +11,13 @@ import UIKit
 
 class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let dataManager = DataManager()
-    
+    //Begin IB outlets
     @IBOutlet weak var walletSelectionTableView: UITableView!
     
     @IBAction func generateAddress(_ sender: Any) {
         if (selectedWallet.name == "null") {
             let alert = UIAlertController(title: "Alert", message: "Please select a wallet", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -34,7 +33,9 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }
-        
+    
+    let dataManager = DataManager()
+
     var wallets:[CryptoWallet] = []
     
     var selectedWallet = CryptoWallet()
