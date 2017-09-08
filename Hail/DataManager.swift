@@ -15,12 +15,21 @@ class DataManager {
     let nodeManager = NodeManager()
     
     init(){
+        //Prints Realm URL. Useful for debugging
         print("Realm URL: "+(realm.configuration.fileURL?.absoluteString)! + "\n\n")
     }
     
+    //completionHandler accepts an optional closure with params returnedAddress of type WalletAddress. For example usage see ReceiveTransactionViewController
     func getNewAddressfor(id:String, network: String, completionHandler:@escaping ((_ returnedAddress:WalletAddress) -> Void) = {returnedAddress in print(returnedAddress.value)}) {
         nodeManager.generateNewAddress(network: network, identifier: id, completionHandler: {
             returnedJSON in
+            /*
+             self.thread.async {} is used to keep track of the current thread that involves this class.
+             This is done because Realm is not thread safe and you cannot access Realm instances across 
+             threads, a problem that will occur when doing async programming. 
+             
+             - Adds block to the end of the queue
+            */
             self.thread.async {
                 //Add to db
                 let addr = WalletAddress(address: returnedJSON["address"] as! String)
@@ -28,12 +37,14 @@ class DataManager {
                 try! self.realm.write {
                     wallet?.receiveAddresses.append(addr)
                 }
-                //change view shit
+                
+                //Now the address is passed to another block that accesses another thread. I know, iOS async is fun
                 completionHandler(addr)
             }
         })
     }
     
+    //TODO: Implement this logic
     func submitTransaction(wallet: CryptoWallet, toAddress: String, amount: Double) -> Bool {
         
         if ((wallet.aggregateCoinValue() - amount) < 0) {
@@ -56,9 +67,7 @@ class DataManager {
     
     func addWallet(name: String, network: String, masterKey:String? = nil) {
         let key = masterKey ?? "null"
-
         let id = String(arc4random())
-        
         
         //TODO: add func that does this and check bcoin for duplicate Id
         let duplicateWallets = realm.objects(CryptoWallet.self).filter("id == %@", id)
@@ -68,7 +77,8 @@ class DataManager {
             return
         }
         
-        if (key == "null") {
+        //If key is provided, then import the wallet
+        if (key != "null") {
             nodeManager.registerNewWallet(network: network, identifier: id, name: name, masterkey: key, completionHandler: {
                 returnedJSON in
                 self.thread.async {
@@ -118,9 +128,6 @@ class DataManager {
         }
     }
     
-    func getAllWallets() {
-    }
-    
     var walletCount: Int {
         get{
             return realm.objects(CryptoWallet.self).count
@@ -140,10 +147,6 @@ class DataManager {
         return realm.objects(CryptoWallet.self).sorted(byKeyPath: "positionIndex")
     }
     
-    func getCurrentFiatValue(){
-        
-    }
-    
     func deleteWallet(wallet: CryptoWallet){
         try! realm.write {
             realm.delete(realm.objects(CryptoWallet.self).filter("id == %@", wallet.id))
@@ -161,6 +164,7 @@ class DataManager {
     }
 }
 
+//Begin Realm models
 class WalletAddress: Object {
     dynamic var value: String = "null"
     
@@ -188,7 +192,6 @@ class CryptoWallet: Object {
     dynamic var masterKey: String = "null"
     dynamic var id: String = "null"
     dynamic var token = "null"
-    dynamic var network = "null"
 
     let receiveAddresses = List<WalletAddress>()
     dynamic var changeAddress: WalletAddress? = WalletAddress()
@@ -202,7 +205,6 @@ class CryptoWallet: Object {
     }
     
     func aggregateCoinValue() -> Double {
-        
         var balance = 0.0
         var postedBalance = 0.0
         
@@ -238,7 +240,7 @@ class CryptoWallet: Object {
     }
 }
 
-
+//Begin needed extensions
 extension Thread {
     
     private typealias Block = @convention(block) () -> Void

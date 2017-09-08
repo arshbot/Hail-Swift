@@ -16,9 +16,7 @@ class NodeManager {
     let bitcoinNodeURL: String = "http://127.0.0.1:18332"
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
-    
-    let coin: String = ""
-    
+        
     init() {
         self.establishConnection()
     }
@@ -61,7 +59,7 @@ class NodeManager {
     }
     
     //TODO: Rename this function to registerNewWalletWithNode
-    func registerNewWallet(coin: String, identifier:String, name:String, masterkey:String? = nil, completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
+    func registerNewWallet(network: String, identifier:String, name:String, masterkey:String? = nil, completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         let key = masterkey ?? "null"
         var walletValue:CryptoWallet = CryptoWallet() {
             willSet(wal) {
@@ -72,7 +70,7 @@ class NodeManager {
             }
         }
         
-        switch coin {
+        switch network {
         case "Bitcoin":
             do {
                 
