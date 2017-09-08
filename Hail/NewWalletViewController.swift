@@ -15,7 +15,7 @@ class NewWalletViewController: UIViewController {
     
     @IBOutlet weak var bitcoinSelectedHue: UIView!
     
-    var coinType: String = "null"
+    var network: String = "null"
     
     let dataManager = DataManager()
     
@@ -29,7 +29,7 @@ class NewWalletViewController: UIViewController {
         self.dismiss(animated: true, completion: {
             let name = self.walletNameField.text
             let masterkey = self.importWalletMasterKeyField.text
-            let coinType = self.coinType
+            let network = self.network
             
         })
     }
@@ -37,8 +37,8 @@ class NewWalletViewController: UIViewController {
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
             let name = self.walletNameField.text
-            let coinType = self.coinType
-            self.dataManager.addWallet(name: name!, coin: coinType)
+            let network = self.network
+            self.dataManager.addWallet(name: name!, network: network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 
         })
@@ -47,13 +47,13 @@ class NewWalletViewController: UIViewController {
     
     
     @IBAction func bitcoinSelected(_ sender: Any) {
-        selectCoin(coin: "Bitcoin")
+        selectCoin(network: "Bitcoin")
         //self.performSegue(withIdentifier: "NewWallet", sender: self)
 
     }
     
     @IBAction func litecoinSelected(_ sender: Any) {
-        selectCoin(coin: "Litecoin")
+        selectCoin(network: "Litecoin")
 
         //self.performSegue(withIdentifier: "NewWallet", sender: self)
 
@@ -65,14 +65,14 @@ class NewWalletViewController: UIViewController {
         bitcoinSelectedHue.backgroundColor = UIColor.clear
     }
     
-    func selectCoin(coin: String) {
+    func selectCoin(network: String) {
         litecoinSelectedHue.backgroundColor = UIColor.clear
         bitcoinSelectedHue.backgroundColor = UIColor.clear
-        coinType = coin
-        if(coin == "Bitcoin") {
+        network = network
+        if(network == "Bitcoin") {
             bitcoinSelectedHue.backgroundColor = UIColor.blue
         }
-        else if (coin == "Litecoin") {
+        else if (network == "Litecoin") {
             litecoinSelectedHue.backgroundColor = UIColor.blue
         }
         
