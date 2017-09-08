@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainDashboard: UIViewController {
+class MainDashboardVC: UIViewController {
 
     //Begin Import things
     
