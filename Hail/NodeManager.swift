@@ -11,6 +11,8 @@ import Foundation
 class NodeManager {
 
     let bitcoinNodeURL: String = "http://127.0.0.1:18332"
+    
+    //Ideally this would be pulled from firebase or some off site server. Don't store credentials in code!
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
     
@@ -141,49 +143,6 @@ class NodeManager {
         default:
             print("network variable not initialized in NodeManager")
         }
-    }
-    
-    func importWallet(network: String, masterKey: String) {
-        switch network {
-        case "Bitcoin":
-            do {
-                let opt = try HTTP.GET(bitcoinNodeURL)
-                var success: Bool?
-                
-                //Inital auth
-                var attempted = false
-                opt.auth = { challenge in
-                    if !attempted {
-                        attempted = true
-                        return URLCredential(user: self.bitcoinNodeUser, password: self.bitcoinNodePassword, persistence: .forSession)
-                    }
-                    print("Bitcoin Auth Failed")
-                    return nil //auth failed, nil causes the request to be properly cancelled.
-                }
-                
-                opt.start { response in
-                    if let err = response.error {
-                        print("error: \(err.localizedDescription)")
-                        success = false
-                    } else {
-                        print("Bitcoin connection successful")
-                        print("opt finished: \(response.description)")
-                        //print("data is: \(response.data)") access the response of the data with response.data
-                        if (success == nil) {
-                            success = true
-                        }
-                    }
-                    
-                }
-                //return success!
-            } catch let error {
-                print("got an error creating the request: \(error)")
-                //return false
-            }
-        default:
-            print("Error")
-        }
-
     }
     
     //Returns the new address in the completion handler
