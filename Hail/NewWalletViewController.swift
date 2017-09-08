@@ -27,6 +27,7 @@ class NewWalletViewController: UIViewController {
     
     @IBAction func importWallet(_ sender: Any) {
         self.dismiss(animated: true, completion: {
+            //TODO: Implement import logic
             let name = self.walletNameField.text
             let masterkey = self.importWalletMasterKeyField.text
             let network = self.network
@@ -36,9 +37,7 @@ class NewWalletViewController: UIViewController {
     
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            let name = self.walletNameField.text
-            let network = self.network
-            self.dataManager.addWallet(name: name!, network: network)
+            self.dataManager.addWallet(name: self.walletNameField.text, network: self.network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 
         })
