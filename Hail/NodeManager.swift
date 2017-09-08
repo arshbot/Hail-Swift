@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import SwiftHTTP
-
-//TODO: get rid SwiftHTTP stuff
 
 class NodeManager {
 
