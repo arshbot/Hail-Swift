@@ -38,7 +38,6 @@ class MainDashboardViewController: UIViewController {
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let dataManager = DataManager()
-    //var wallets:[NSObject] = []
     var isEmpty: Bool = false
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,12 +53,15 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        //If no wallets are present then present the noWalletCell view
         if (isEmpty){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noWalletCell", for: indexPath)
             return cell
         }
         
         let wallet = Array(dataManager.getWalletsOrderedByIndex().reversed())[indexPath.item]
+        
+        //Construct a different cell based on how many transactions are present
         switch wallet.transactions.count {
             case 0:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyWalletReusableCell", for: indexPath) as! emptyWalletReusableCell
@@ -73,7 +75,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
                 cell.fiatValue.text = String(wallet.aggregateFiatValue())
                 cell.addr.text = wallet.receiveAddresses.first?.value
                 return cell
-
+            
             case 1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "singleTXWalletReusableCell", for: indexPath) as! singleTXWalletReusableCell
                 cell.wallet = wallet
@@ -95,10 +97,8 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
                 cell.TX2CoinValue.text = transactions[1].coinValue.description
                 cell.TX2FiatValue.text = transactions[1].purchasedFiatValue.description
                 return cell
-
         }
     }
-    
 }
 
 class walletReusableCell: UICollectionViewCell {
