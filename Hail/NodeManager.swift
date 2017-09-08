@@ -112,7 +112,6 @@ class NodeManager {
                     let postData = NSData(data: "{\"id\": \(identifier), \"witness\": false}"
                     .data(using: String.Encoding.utf8)!)
                     
-                
                     let request = NSMutableURLRequest(url: NSURL(string: "\(bitcoinNodeURL)/wallet/\(identifier)")! as URL,
                         cachePolicy: .useProtocolCachePolicy,
                         timeoutInterval: 10.0)
@@ -126,36 +125,25 @@ class NodeManager {
                             print(error)
                         } else {
                             do {
-                                guard let w = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                guard let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
                                         print("error trying to convert data to JSON")
                                         return
                                 }
-                                
-                                completionHandler(w)
-                                
+                                completionHandler(jsonDict)
                             } catch {
                                 print("error trying to convert data to JSON")
                                 return
                             }
                         }
                     })
-                
                     dataTask.resume()
                 }
-        
-                //return success!
             } catch let error {
                 print("got an error creating the request: \(error)")
-                //return false
             }
         default:
             print("network variable not initialized in NodeManager")
-            //return false
         }
-        
-        //Return to silence annoying Xcode errors
-        //return walletValue
-
     }
     
     func importWallet(network: String, masterKey: String) {

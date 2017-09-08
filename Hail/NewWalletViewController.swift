@@ -59,7 +59,7 @@ class NewWalletViewController: UIViewController {
     func selectCoin(network: String) {
         litecoinSelectedHue.backgroundColor = UIColor.clear
         bitcoinSelectedHue.backgroundColor = UIColor.clear
-        
+        self.network = network
         if(network == "Bitcoin") {
             bitcoinSelectedHue.backgroundColor = UIColor.blue
         }
