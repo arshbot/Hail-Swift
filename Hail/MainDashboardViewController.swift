@@ -10,8 +10,7 @@ import UIKit
 
 class MainDashboardViewController: UIViewController {
 
-    //Begin Import things
-    
+    //Begin IB Outlets
     @IBOutlet weak var walletCollectionView: UICollectionView!
     
     @IBAction func createWallet(_ sender: Any) {
@@ -22,27 +21,18 @@ class MainDashboardViewController: UIViewController {
         self.performSegue(withIdentifier: "NewTransaction", sender: self)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //walletCollectionView.register(singleTXWalletReusableCell.self, forCellWithReuseIdentifier: "singleTXWalletReusableCell")
         walletCollectionView.delegate = walletCollectionView as! UICollectionViewDelegate
         walletCollectionView.dataSource = walletCollectionView as! UICollectionViewDataSource
+        
+        //Begin listening for notifications to reload the walletCollectionView
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     func loadList(){
         self.walletCollectionView.reloadData()
-        //self.walletCollectionView.reload
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
 class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -60,7 +50,6 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
             isEmpty = false
             return num
         }
-        
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
