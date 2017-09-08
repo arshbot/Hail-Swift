@@ -7,8 +7,6 @@ target 'Hail' do
 
   # Pods for Hail
   pod 'RealmSwift'
-  pod 'SwiftHTTP', '~> 2.0'
-
 end
 
 post_install do |installer|
