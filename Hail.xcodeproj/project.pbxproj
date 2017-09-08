@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3744A7E0450CE0AC70EF9A6D /* Pods_Hail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94BAB2394187E754E800F5D /* Pods_Hail.framework */; };
 		C1274B7C1F2FF77700D5D6A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274B7B1F2FF77700D5D6A8 /* AppDelegate.swift */; };
-		C1274B7E1F2FF77700D5D6A8 /* WorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274B7D1F2FF77700D5D6A8 /* WorldViewController.swift */; };
+		C1274B7E1F2FF77700D5D6A8 /* MainDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274B7D1F2FF77700D5D6A8 /* MainDashboard.swift */; };
 		C1274B811F2FF77700D5D6A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1274B7F1F2FF77700D5D6A8 /* Main.storyboard */; };
 		C1274B831F2FF77700D5D6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1274B821F2FF77700D5D6A8 /* Assets.xcassets */; };
 		C1274B861F2FF77700D5D6A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1274B841F2FF77700D5D6A8 /* LaunchScreen.storyboard */; };
@@ -25,7 +25,7 @@
 		8E9DD0846239B642D928331D /* Pods-Hail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hail/Pods-Hail.debug.xcconfig"; sourceTree = "<group>"; };
 		C1274B781F2FF77700D5D6A8 /* Hail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1274B7B1F2FF77700D5D6A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C1274B7D1F2FF77700D5D6A8 /* WorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldViewController.swift; sourceTree = "<group>"; };
+		C1274B7D1F2FF77700D5D6A8 /* MainDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDashboard.swift; sourceTree = "<group>"; };
 		C1274B801F2FF77700D5D6A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1274B821F2FF77700D5D6A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1274B851F2FF77700D5D6A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				C1274B7B1F2FF77700D5D6A8 /* AppDelegate.swift */,
 				C1E031371F43782600A03BE6 /* NewTransactionViewController.swift */,
-				C1274B7D1F2FF77700D5D6A8 /* WorldViewController.swift */,
+				C1274B7D1F2FF77700D5D6A8 /* MainDashboard.swift */,
 				C1274B8F1F34108200D5D6A8 /* NewWalletViewController.swift */,
 				C13A65211F55BFD000A92741 /* ReceiveTransactionViewController.swift */,
 				C1274B911F3522B700D5D6A8 /* DataManager.swift */,
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1274B921F3522B700D5D6A8 /* DataManager.swift in Sources */,
-				C1274B7E1F2FF77700D5D6A8 /* WorldViewController.swift in Sources */,
+				C1274B7E1F2FF77700D5D6A8 /* MainDashboard.swift in Sources */,
 				C1E031381F43782600A03BE6 /* NewTransactionViewController.swift in Sources */,
 				C1274B901F34108200D5D6A8 /* NewWalletViewController.swift in Sources */,
 				C13A65221F55BFD000A92741 /* ReceiveTransactionViewController.swift in Sources */,

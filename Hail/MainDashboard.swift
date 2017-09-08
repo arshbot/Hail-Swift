@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WorldViewController: UIViewController {
+class MainDashboard: UIViewController {
 
     //Begin Import things
     
