@@ -97,7 +97,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
         let wallet = wallets[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletSelectionReusableCell", for: indexPath) as! walletSelectionReusableCell
         cell.name.text = wallet.name
-        cell.coinType.text = wallet.coinType
+        cell.coinType.text = wallet.network
         cell.coinValue.text = String(wallet.aggregateCoinValue())
         return cell
     }

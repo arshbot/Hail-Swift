@@ -66,7 +66,7 @@ class walletCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
             case 0:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyWalletReusableCell", for: indexPath) as! emptyWalletReusableCell
                 cell.wallet = wallet
-                cell.coinType!.text = wallet.coinType
+                cell.coinType!.text = wallet.network
                 cell.name.text = wallet.name
                 cell.value.text = String(wallet.aggregateCoinValue())
                 cell.txs.text = String(wallet.transactions.count)

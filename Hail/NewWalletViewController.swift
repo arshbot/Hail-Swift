@@ -32,7 +32,7 @@ class NewWalletViewController: UIViewController {
     
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            self.dataManager.addWallet(name: self.walletNameField.text, network: self.network)
+            self.dataManager.addWallet(name: self.walletNameField.text!, network: self.network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         })
         

@@ -22,7 +22,7 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
             return
         }
         
-        self.dataManager.getNewAddressfor(id: selectedWallet.id, coin: selectedWallet.coinType, completionHandler: {
+        self.dataManager.getNewAddressfor(id: selectedWallet.id, network: selectedWallet.network, completionHandler: {
             returnedAddr in
             self.addressLabel.text = returnedAddr.value
         })
@@ -60,7 +60,7 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
         let wallet = wallets[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletSelectionReusableCell", for: indexPath) as! walletSelectionReusableCell
         cell.name.text = wallet.name
-        cell.coinType.text = wallet.coinType
+        cell.coinType.text = wallet.network
         cell.coinValue.text = String(wallet.aggregateCoinValue())
         return cell
     }

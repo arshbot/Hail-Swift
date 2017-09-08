@@ -151,11 +151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/DataManager.swift"
-            timestampString = "526512848.441006"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "saveWallet(wallet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -231,12 +231,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -279,12 +279,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -295,12 +295,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -311,28 +311,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -343,12 +327,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "525293766.061465"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "registerNewWallet(coin:identifier:name:masterkey:completionHandler:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -359,12 +343,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526511325.016815"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "generateNewAddress(coin:identifier:account:completionHandler:)"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -375,12 +359,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526506523.052953"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "generateNewAddress(coin:identifier:account:completionHandler:)"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -423,12 +407,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526511325.016815"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
-            landmarkName = "generateNewAddress(coin:identifier:account:completionHandler:)"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -439,12 +423,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526511325.016815"
+            timestampString = "526582612.53933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "generateNewAddress(coin:identifier:account:completionHandler:)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
