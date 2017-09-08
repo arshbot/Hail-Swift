@@ -21,6 +21,8 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
     
     
     @IBAction func sendTx(_ sender: Any) {
+        
+        //Check if a wallet is selected
         if (selectedWallet.name == "null") {
             let alert = UIAlertController(title: "Alert", message: "Please select a wallet", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -28,6 +30,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         
+        //Check if a destination has been entered
         if (destination.text == "") {
             let alert = UIAlertController(title: "Alert", message: "Please specify a destination", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -35,6 +38,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         
+        //Check if an amount has been entered
         if (amount.text == "") {
             let alert = UIAlertController(title: "Alert", message: "Please enter a number for the amount", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -42,6 +46,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         
+        //Check if the input in amount.text is a number
         if (Double(amount.text!) == nil) {
             let alert = UIAlertController(title: "Alert", message: "Please enter a number for the amount", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -49,6 +54,7 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         
+        //Check if there is sufficient funds for transaction
         if (!self.dataManager.submitTransaction(wallet: self.selectedWallet, toAddress: self.destination.text!, amount: Double(self.amount.text!)!)) {
             let alert = UIAlertController(title: "Alert", message: "Insufficient Funds", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -56,6 +62,9 @@ class NewTransactionViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         
+        //TODO: Add transaction call herez
+        
+        //Dismiss this view and give a system notification to reload the main dashboard
         self.dismiss(animated: true, completion: {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         })
