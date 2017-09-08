@@ -16,7 +16,7 @@ class NodeManager {
     let bitcoinNodeURL: String = "http://127.0.0.1:18332"
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
-        
+    
     init() {
         self.establishConnection()
     }
@@ -187,7 +187,7 @@ class NodeManager {
                 //return false
             }
         default:
-            print("coin variable not initialized in NodeManager")
+            print("network variable not initialized in NodeManager")
             //return false
         }
         
@@ -196,8 +196,8 @@ class NodeManager {
 
     }
     
-    func importWallet(coin: String, masterKey: String) {
-        switch coin {
+    func importWallet(network: String, masterKey: String) {
+        switch network {
         case "Bitcoin":
             do {
                 let opt = try HTTP.GET(bitcoinNodeURL)
@@ -240,8 +240,8 @@ class NodeManager {
     }
     
     //Returns the new address in the completion handler
-    func generateNewAddress(coin: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
-        switch coin {
+    func generateNewAddress(network: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
+        switch network {
         case "Bitcoin":
             let headers = [
                 "content-type": "application/json",
