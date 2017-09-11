@@ -10,7 +10,8 @@ This repository contains a UI-less version of the production Hail (minus some ni
 • Basic bitcoin functionality has been added.
 
 ### Next Update
-• Problems with bcoin's scanning methods and a lack of a websocket for new tx notifications prevent sending and receiving balances serverside although clientside functionality exists. Fixes will be in node.js for the backend
+• Problems with bcoin's scanning methods and a lack of a websocket for new tx notifications prevent sending and receiving balances serverside although clientside functionality exists. Fixes will be in node.js for the backend.
+
 • Litecoin functionality is being researched
 
 
