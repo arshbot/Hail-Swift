@@ -30,21 +30,32 @@ class NewWalletViewController: UIViewController {
         })
     }
     
+    @IBAction func testnetSwitch(_ sender: Any) {
+        self.isTestnet = !self.isTestnet
+    }
+    
+    
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
+            if(self.isTestnet) {
+                self.network = self.network + " Testnet"
+            } else {
+                self.network = self.network + " Mainnet"
+            }
             self.dataManager.addWallet(name: self.walletNameField.text!, network: self.network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         })
-        
     }
     
     @IBAction func bitcoinSelected(_ sender: Any) {
-        selectCoin(network: "Bitcoin")
+        selectCoin(network: "BTC")
     }
     
     @IBAction func litecoinSelected(_ sender: Any) {
-        selectCoin(network: "Litecoin")
+        selectCoin(network: "LTC")
     }
+    
+    var isTestnet: Bool = false
     
     var network: String = "null"
     
@@ -60,13 +71,11 @@ class NewWalletViewController: UIViewController {
         litecoinSelectedHue.backgroundColor = UIColor.clear
         bitcoinSelectedHue.backgroundColor = UIColor.clear
         self.network = network
-        if(network == "Bitcoin") {
+        if(network == "BTC") {
             bitcoinSelectedHue.backgroundColor = UIColor.blue
         }
-        else if (network == "Litecoin") {
+        else if (network == "LTC") {
             litecoinSelectedHue.backgroundColor = UIColor.blue
         }
-        
     }
-    
 }

@@ -41,6 +41,7 @@ class NodeManager {
                 print(data)
             }
         })
+        //Execute the call
         dataTask.resume()
     }
     
@@ -97,7 +98,7 @@ class NodeManager {
                             }
                         }
                     })
-                    
+                    //Execute the call
                     dataTask.resume()
                     
                 //If not, create new wallet
@@ -135,6 +136,7 @@ class NodeManager {
                             }
                         }
                     })
+                    //Execute the call
                     dataTask.resume()
                 }
             } catch let error {
