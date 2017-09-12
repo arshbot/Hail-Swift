@@ -18,7 +18,7 @@ class NodeManager {
     let btcTestnetNodeUser: String = "x"
     let btcTestnetNodePassword: String = "iamsatoshi"
     
-    let ltcTestnetNodeUser: String = "x"
+    let ltcTestnetNodeUserName: String = "x"
     let ltcTestnetNodePassword: String = "iamsatoshi"
     
     init() {
@@ -28,24 +28,30 @@ class NodeManager {
     private func establishConnection() {
         
         //BTC TESTNET
-        executeRequest(URL: NSURL(string: btcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print(error)
-            } else {
-                let httpResponse = response as? HTTPURLResponse
-                print(data)
-            }
+        executeRequest(URL: NSURL(string: btcTestnetNodeURL)! as URL,
+                       httpMethod: "GET",
+                       completionHandler: { (data, response, error) -> Void in
+                        if (error != nil) {
+                            print(error)
+                        } else {
+                            print("BTC TESTNET connection established")
+                        }
         })
         
         //LTC TESTNET
-        
-        executeRequest(URL: NSURL(string: ltcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print(error)
-            } else {
-                let httpResponse = response as? HTTPURLResponse
-                print(data)
-            }
+        executeRequest(URL: NSURL(string: ltcTestnetNodeURL)! as URL,
+                       httpMethod: "GET",
+                       //NOTE: lcoin needs auth for GET / while bcoin does not
+                       auth: [
+                            "username": ltcTestnetNodeUserName,
+                            "password": ltcTestnetNodePassword
+                       ],
+                       completionHandler: { (data, response, error) -> Void in
+                        if (error != nil) {
+                            print(error)
+                        } else {
+                            print("LTC TESTNET connection established")
+                        }
         })
         
     }
@@ -188,6 +194,10 @@ class NodeManager {
                     executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)")! as URL,
                                    httpMethod: "PUT",
                                    postData: "{\"masterKey\": \(identifier)}",
+                                    auth: [
+                                        "username": ltcTestnetNodeUserName,
+                                        "password": ltcTestnetNodePassword
+                                    ],
                                    completionHandler:{ (data, response, error) -> Void in
                                     if (error != nil) {
                                         print(error)
@@ -213,6 +223,10 @@ class NodeManager {
                     executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)")! as URL,
                                    httpMethod: "PUT",
                                    postData: "{\"id\": \(identifier), \"witness\": false}",
+                                   auth: [
+                                        "username": ltcTestnetNodeUserName,
+                                        "password": ltcTestnetNodePassword
+                                   ],
                                    completionHandler: { (data, response, error) -> Void in
                                     if (error != nil) {
                                         print(error)
@@ -307,6 +321,10 @@ class NodeManager {
             executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)/address")! as URL,
                            httpMethod: "POST",
                            postData: "{\"account\": \"\(account)\"}",
+                            auth: [
+                                "username": ltcTestnetNodeUserName,
+                                "password": ltcTestnetNodePassword
+                            ],
                            completionHandler: { (data, response, error) -> Void in
                             if (error != nil) {
                                 print(error)
