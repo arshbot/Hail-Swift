@@ -227,6 +227,18 @@ class NodeManager {
     func generateNewAddress(network: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         switch network {
         case "BTC TESTNET":
+            /*
+                 POST /wallet/:id/address
+                 Host: 127.0.0.1:18332
+                 Content-Type: application/json
+                 Authorization: Basic eDppYW1zYXRvc2hp
+                 Cache-Control: no-cache
+                 
+                 {
+                    "account":"default"
+                 }
+             */
+            
             let headers = [
                 "content-type": "application/json",
                 "authorization": "Basic eDppYW1zYXRvc2hp",
@@ -266,7 +278,7 @@ class NodeManager {
         case "LTC TESTNET":
             /*
                  POST /wallet/:id/address
-                 Host: 127.0.0.1:18332
+                 Host: 127.0.0.1:19336
                  Content-Type: application/json
                  Authorization: Basic eDppYW1zYXRvc2hp
                  Cache-Control: no-cache
