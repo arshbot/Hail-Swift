@@ -54,6 +54,11 @@ class NodeManager {
      
         URL - url of server + method wrapped in URL
         httpMethod - For example: "GET", "POST", "PUT", "DELETE" etc
+        postData - body in string form. Be sure to include and escape quotations for string keys
+        auth - String key, string value dictionary. Should have "username" key and "password" key, will fail if not present
+        headers - header for request
+        completionHandler - block that is to be executed on the response. Block has three optional parameters of type Data, URLResponse, Error.
+                            Returns void
     */
     func executeRequest(URL: URL, httpMethod: String, postData: String? = nil, auth: [String:String]? = nil, headers: [String: String] = ["content-type": "application/json", "cache-control": "no-cache"], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void){
         
