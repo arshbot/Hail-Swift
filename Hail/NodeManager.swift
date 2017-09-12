@@ -15,10 +15,11 @@ class NodeManager {
     let ltcTestnetNodeURL: String = "http://127.0.0.1:19336"
     
     //Ideally this would be pulled from firebase or some off site server. Don't store credentials in code!
-    let bitcoinNodeUser: String = "x"
-    let bitcoinNodePassword: String = "iamsatoshi"
-    let litcoinNodeUser: String = "x"
-    let litcoinNodePassword: String = "iamsatoshi"
+    let btcTestnetNodeUser: String = "x"
+    let btcTestnetNodePassword: String = "iamsatoshi"
+    
+    let ltcTestnetNodeUser: String = "x"
+    let ltcTestnetNodePassword: String = "iamsatoshi"
     
     init() {
         self.establishConnection()
