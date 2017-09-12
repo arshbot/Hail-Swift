@@ -24,20 +24,11 @@ class NodeManager {
         self.establishConnection()
     }
     
-    func establishConnection() {
+    private func establishConnection() {
+        
         
         //BTC TESTNET
-        let headers = [
-            "cache-control": "no-cache",
-        ]
-        let request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:18332/")! as URL,
-            cachePolicy: .useProtocolCachePolicy,
-            timeoutInterval: 10.0)
-        
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+        executeRequest(URL: NSURL(string: bitcoinNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
             } else {
@@ -45,10 +36,37 @@ class NodeManager {
                 print(data)
             }
         })
+        
+        //LTC TESTNET
+        executeRequest(URL: NSURL(string: litecoinNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error)
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                print(data)
+            }
+        })
+        
+    }
+    
+    func executeRequest(URL: URL, httpMethod: String, postData: String? = nil, headers: [String: String] = ["content-type": "application/json", "cache-control": "no-cache"], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void){
+        
+        let hdrs = headers
+        let request = NSMutableURLRequest(url: URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        
+        if (postData != nil){
+            request.httpBody = NSData(data: postData!.data(using: String.Encoding.utf8)!) as Data
+        }
+        
+        request.httpMethod = httpMethod
+        request.allHTTPHeaderFields = hdrs
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
+        
         //Execute the call
         dataTask.resume()
-        
-        
     }
     
     func registerNewWallet(network: String, identifier:String, name:String, masterkey:String? = nil, completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
@@ -156,7 +174,7 @@ class NodeManager {
     //Returns the new address in the completion handler
     func generateNewAddress(network: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         switch network {
-        case "Bitcoin":
+        case "BTC TESTNET":
             let headers = [
                 "content-type": "application/json",
                 "authorization": "Basic eDppYW1zYXRvc2hp",
