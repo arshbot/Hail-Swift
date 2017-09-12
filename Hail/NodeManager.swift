@@ -27,7 +27,6 @@ class NodeManager {
     
     private func establishConnection() {
         
-        
         //BTC TESTNET
         executeRequest(URL: NSURL(string: btcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
@@ -263,6 +262,30 @@ class NodeManager {
             })
             
             dataTask.resume()
+            
+        case "LTC TESTNET":
+            executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)/address")! as URL,
+                           httpMethod: "POST",
+                           postData: "{\"account\": \"\(account)\"}",
+                           completionHandler: { (data, response, error) -> Void in
+                            if (error != nil) {
+                                print(error)
+                            } else {
+                                do {
+                                    guard let w = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                        print("error trying to convert data to JSON")
+                                        return
+                                    }
+                                    
+                                    completionHandler(w)
+                                    
+                                } catch {
+                                    print("error trying to convert data to JSON")
+                                    return
+                                }
+                            }
+            })
+            
         default:
             print("Error")
         }
