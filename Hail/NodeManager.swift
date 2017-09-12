@@ -10,11 +10,15 @@ import Foundation
 
 class NodeManager {
 
+    //Default ports
     let bitcoinNodeURL: String = "http://127.0.0.1:18332"
+    let litecoinNodeURL: String = "http://127.0.0.1:19336"
     
     //Ideally this would be pulled from firebase or some off site server. Don't store credentials in code!
     let bitcoinNodeUser: String = "x"
     let bitcoinNodePassword: String = "iamsatoshi"
+    let litcoinNodeUser: String = "x"
+    let litcoinNodePassword: String = "iamsatoshi"
     
     init() {
         self.establishConnection()
@@ -22,7 +26,7 @@ class NodeManager {
     
     func establishConnection() {
         
-        //Bitcoin
+        //BTC TESTNET
         let headers = [
             "cache-control": "no-cache",
         ]
@@ -43,6 +47,8 @@ class NodeManager {
         })
         //Execute the call
         dataTask.resume()
+        
+        
     }
     
     func registerNewWallet(network: String, identifier:String, name:String, masterkey:String? = nil, completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
@@ -57,7 +63,7 @@ class NodeManager {
         }
         
         switch network {
-        case "Bitcoin":
+        case "BTC TESTNET":
             do {
                 
                 //If masterkey is present, import wallet
