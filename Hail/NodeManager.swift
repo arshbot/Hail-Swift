@@ -38,6 +38,7 @@ class NodeManager {
         })
         
         //LTC TESTNET
+        
         executeRequest(URL: NSURL(string: ltcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
@@ -48,13 +49,24 @@ class NodeManager {
         })
         
     }
-    
-    func executeRequest(URL: URL, httpMethod: String, postData: String? = nil, headers: [String: String] = ["content-type": "application/json", "cache-control": "no-cache"], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void){
+    /*
+        PARAMS
+     
+        URL - url of server + method wrapped in URL
+        httpMethod - For example: "GET", "POST", "PUT", "DELETE" etc
+    */
+    func executeRequest(URL: URL, httpMethod: String, postData: String? = nil, auth: [String:String]? = nil, headers: [String: String] = ["content-type": "application/json", "cache-control": "no-cache"], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void){
         
-        let hdrs = headers
+        var hdrs = headers
         let request = NSMutableURLRequest(url: URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         if (postData != nil){
             request.httpBody = NSData(data: postData!.data(using: String.Encoding.utf8)!) as Data
+        }
+        if (auth != nil){
+            let loginString = NSString(format: "%@:%@", auth!["username"]!, auth!["password"]!)
+            let loginData: NSData = loginString.data(using: String.Encoding.utf8.rawValue)! as NSData
+            let base64LoginString = loginData.base64EncodedString(options: [])
+            hdrs.updateValue("Basic \(base64LoginString)", forKey: "authorization")
         }
         request.httpMethod = httpMethod
         request.allHTTPHeaderFields = hdrs
@@ -150,7 +162,7 @@ class NodeManager {
                                         return
                                 }
                                 completionHandler(jsonDict)
-                            } catch {
+                            } catch let err {
                                 print("error trying to convert data to JSON")
                                 return
                             }
