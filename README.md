@@ -1,10 +1,21 @@
 # Hail - A multicoin wallet template app for iOS
 
-Hail exists as an app on the appstore and as a template for iOS developers to utilize as a roadmap to make it easier to develop in the cryptocurrency space. 
+Hail will exist as an app on the appstore and as a template for iOS developers to utilize as a roadmap to make it easier to develop in the cryptocurrency space. 
 
 This repository contains a UI-less version of the production Hail (minus some niceties I have for the production version). It can create/import wallets and spend/receive transactions in two cryptocurrencies (currently bitcoin and litecoin) with support for others being worked on.
 
-### Getting Started
+## Project Status
+
+### Accomplished
+• Basic bitcoin functionality has been added.
+
+### Next Update
+• Problems with bcoin's scanning methods and a lack of a websocket for new tx notifications prevent sending and receiving balances serverside although clientside functionality exists. Fixes will be in node.js for the backend.
+
+• Litecoin functionality is being researched
+
+
+## Getting Started
 
 This is an Xcode project written entirely in Swift 3.0. You will need [the latest version or a version that supports your needs.](https://stackoverflow.com/questions/10335747/how-to-download-xcode-dmg-or-xip-file)
 
