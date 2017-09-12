@@ -34,13 +34,21 @@ class NewWalletViewController: UIViewController {
         self.isTestnet = !self.isTestnet
     }
     
+    /***NETWORK CODES***
+     
+        BTC MAINNET
+        BTC TESTNET
+        LTC MAINNET
+        LTC TESTNET
+     
+    */
     
     @IBAction func newWalletCreated(_ sender: Any) {
         self.dismiss(animated: true, completion: {
             if(self.isTestnet) {
-                self.network = self.network + " Testnet"
+                self.network = self.network + " TESTNET"
             } else {
-                self.network = self.network + " Mainnet"
+                self.network = self.network + " MAINNET"
             }
             self.dataManager.addWallet(name: self.walletNameField.text!, network: self.network)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
