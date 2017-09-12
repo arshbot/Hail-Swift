@@ -11,8 +11,8 @@ import Foundation
 class NodeManager {
 
     //Default ports
-    let bitcoinNodeURL: String = "http://127.0.0.1:18332"
-    let litecoinNodeURL: String = "http://127.0.0.1:19336"
+    let btcTestnetNodeURL: String = "http://127.0.0.1:18332"
+    let ltcTestnetNodeURL: String = "http://127.0.0.1:19336"
     
     //Ideally this would be pulled from firebase or some off site server. Don't store credentials in code!
     let bitcoinNodeUser: String = "x"
@@ -28,7 +28,7 @@ class NodeManager {
         
         
         //BTC TESTNET
-        executeRequest(URL: NSURL(string: bitcoinNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
+        executeRequest(URL: NSURL(string: btcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
             } else {
@@ -38,7 +38,7 @@ class NodeManager {
         })
         
         //LTC TESTNET
-        executeRequest(URL: NSURL(string: litecoinNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
+        executeRequest(URL: NSURL(string: ltcTestnetNodeURL)! as URL, httpMethod: "GET", completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
             } else {
@@ -52,14 +52,10 @@ class NodeManager {
     func executeRequest(URL: URL, httpMethod: String, postData: String? = nil, headers: [String: String] = ["content-type": "application/json", "cache-control": "no-cache"], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void){
         
         let hdrs = headers
-        let request = NSMutableURLRequest(url: URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        
+        let request = NSMutableURLRequest(url: URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         if (postData != nil){
             request.httpBody = NSData(data: postData!.data(using: String.Encoding.utf8)!) as Data
         }
-        
         request.httpMethod = httpMethod
         request.allHTTPHeaderFields = hdrs
         let session = URLSession.shared
@@ -96,7 +92,7 @@ class NodeManager {
                     let postData = NSData(data: "{\"masterKey\": \(identifier)}"
                         .data(using: String.Encoding.utf8)!)
                     
-                    let request = NSMutableURLRequest(url: NSURL(string: "http://\(bitcoinNodeURL)/wallet/\(identifier)")! as URL,
+                    let request = NSMutableURLRequest(url: NSURL(string: "http://\(btcTestnetNodeURL)/wallet/\(identifier)")! as URL,
                                                       cachePolicy: .useProtocolCachePolicy,
                                                       timeoutInterval: 10.0)
                     request.httpMethod = "PUT"
@@ -136,7 +132,7 @@ class NodeManager {
                     let postData = NSData(data: "{\"id\": \(identifier), \"witness\": false}"
                     .data(using: String.Encoding.utf8)!)
                     
-                    let request = NSMutableURLRequest(url: NSURL(string: "\(bitcoinNodeURL)/wallet/\(identifier)")! as URL,
+                    let request = NSMutableURLRequest(url: NSURL(string: "\(btcTestnetNodeURL)/wallet/\(identifier)")! as URL,
                         cachePolicy: .useProtocolCachePolicy,
                         timeoutInterval: 10.0)
                     request.httpMethod = "PUT"
@@ -166,11 +162,67 @@ class NodeManager {
             } catch let error {
                 print("got an error creating the request: \(error)")
             }
+            
+        case "LTC TESTNET":
+            do {
+                //If masterkey is present, import wallet
+                if (key != "null") {
+                    //Imports wallet from masterkey
+                    executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)")! as URL,
+                                   httpMethod: "PUT",
+                                   postData: "{\"masterKey\": \(identifier)}",
+                                   completionHandler:{ (data, response, error) -> Void in
+                                    if (error != nil) {
+                                        print(error)
+                                    } else {
+                                        do {
+                                            guard let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                                print("error trying to convert data to JSON")
+                                                return
+                                            }
+                                            
+                                            //Execute block passed in
+                                            completionHandler(jsonDict)
+                                        } catch {
+                                            print("error trying to convert data to JSON")
+                                            return
+                                        }
+                                    }
+                    })
+                    
+                //If not, create new wallet
+                } else {
+                    //Intializes new wallet
+                    executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)")! as URL,
+                                   httpMethod: "PUT",
+                                   postData: "{\"id\": \(identifier), \"witness\": false}",
+                                   completionHandler: { (data, response, error) -> Void in
+                                    if (error != nil) {
+                                        print(error)
+                                    } else {
+                                        do {
+                                            guard let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                                print("error trying to convert data to JSON")
+                                                return
+                                            }
+                                            completionHandler(jsonDict)
+                                        } catch {
+                                            print("error trying to convert data to JSON")
+                                            return
+                                        }
+                                    }
+                    })
+                }
+                
+            } catch let error {
+                print("got an error creating the request: \(error)")
+            }
+        
         default:
             print("network variable not initialized in NodeManager")
         }
     }
-    
+
     //Returns the new address in the completion handler
     func generateNewAddress(network: String, identifier:String, account:String="default", completionHandler: @escaping ((_ returnedJSON:[String: AnyObject]) -> Void)) {
         switch network {
@@ -184,7 +236,7 @@ class NodeManager {
             let postData = NSData(data: "{\"account\": \"\(account)\"}"
             .data(using: String.Encoding.utf8)!)
             
-            let request = NSMutableURLRequest(url: NSURL(string: "\(bitcoinNodeURL)/wallet/\(identifier)/address")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+            let request = NSMutableURLRequest(url: NSURL(string: "\(btcTestnetNodeURL)/wallet/\(identifier)/address")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = headers
             request.httpBody = postData as Data

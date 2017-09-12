@@ -231,11 +231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582612.53933"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -279,11 +279,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -295,11 +295,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582612.53933"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -311,11 +311,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -327,11 +327,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -343,11 +343,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -391,11 +391,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -407,11 +407,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hail/NodeManager.swift"
-            timestampString = "526582887.809559"
+            timestampString = "526947266.813603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
