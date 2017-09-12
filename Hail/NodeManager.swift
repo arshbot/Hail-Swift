@@ -264,6 +264,17 @@ class NodeManager {
             dataTask.resume()
             
         case "LTC TESTNET":
+            /*
+                 POST /wallet/:id/address
+                 Host: 127.0.0.1:18332
+                 Content-Type: application/json
+                 Authorization: Basic eDppYW1zYXRvc2hp
+                 Cache-Control: no-cache
+             
+                 {
+                    "account":"default"
+                 }
+            */
             executeRequest(URL: NSURL(string: "\(ltcTestnetNodeURL)/wallet/\(identifier)/address")! as URL,
                            httpMethod: "POST",
                            postData: "{\"account\": \"\(account)\"}",
