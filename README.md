@@ -7,9 +7,12 @@ This repository contains a UI-less version of the production Hail (minus some ni
 ## Project Status
 
 ### Accomplished
+
 • Basic bitcoin functionality has been added.
+
 • Basic Litecoin functionality has been added.
-• Documentation standards have been heightened -- Every public method in NodeManager and DataManager must have some documentation explaining the parameters, returned variable, and the purpose of the method
+
+• Documentation standards have been heightened -- Every public method in NodeManager and DataManager must have some documentation explaining the parameters, returned variable, and the purpose of the method.
 
 ### Next Update
 • Problems with bcoin's scanning methods and a lack of a websocket for new tx notifications prevent sending and receiving balances serverside although clientside functionality exists. Fixes will be in node.js for the backend.
