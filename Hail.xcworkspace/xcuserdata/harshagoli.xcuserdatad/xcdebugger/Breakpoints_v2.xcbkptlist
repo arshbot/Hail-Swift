@@ -316,7 +316,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "253"
             endingLineNumber = "253"
-            landmarkName = "registerNewWallet(network:identifier:name:masterkey:completionHandler:)"
+            landmarkName = "generateNewAddress(network:identifier:account:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

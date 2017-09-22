@@ -33,6 +33,7 @@
 		C1274B8F1F34108200D5D6A8 /* NewWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		C1274B911F3522B700D5D6A8 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C13A65211F55BFD000A92741 /* ReceiveTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveTransactionViewController.swift; sourceTree = "<group>"; };
+		C1CA23461F74A13500FE0957 /* Hail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hail.entitlements; sourceTree = "<group>"; };
 		C1E031351F40C82C00A03BE6 /* NodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeManager.swift; sourceTree = "<group>"; };
 		C1E031371F43782600A03BE6 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 		D94BAB2394187E754E800F5D /* Pods_Hail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +89,7 @@
 		C1274B7A1F2FF77700D5D6A8 /* Hail */ = {
 			isa = PBXGroup;
 			children = (
+				C1CA23461F74A13500FE0957 /* Hail.entitlements */,
 				C1274B7B1F2FF77700D5D6A8 /* AppDelegate.swift */,
 				C1E031371F43782600A03BE6 /* NewTransactionViewController.swift */,
 				C1274B7D1F2FF77700D5D6A8 /* MainDashboardViewController.swift */,
@@ -140,6 +142,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = JMP9D48WN6;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -359,6 +366,7 @@
 			baseConfigurationReference = 8E9DD0846239B642D928331D /* Pods-Hail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Hail/Hail.entitlements;
 				DEVELOPMENT_TEAM = JMP9D48WN6;
 				INFOPLIST_FILE = Hail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -374,6 +382,7 @@
 			baseConfigurationReference = 7BACC4C4F8D4E5C011000A58 /* Pods-Hail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Hail/Hail.entitlements;
 				DEVELOPMENT_TEAM = JMP9D48WN6;
 				INFOPLIST_FILE = Hail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
