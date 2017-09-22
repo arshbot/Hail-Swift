@@ -106,43 +106,27 @@ class NodeManager {
                 //If masterkey is present, import wallet
                 if (key != "null") {
                     
-                    let headers = [
-                        "content-type": "application/json",
-                        "authorization": "Basic eDppYW1zYXRvc2hp",
-                        "cache-control": "no-cache",
-                    ]
-                    
-                    let postData = NSData(data: "{\"masterKey\": \(identifier)}"
-                        .data(using: String.Encoding.utf8)!)
-                    
-                    let request = NSMutableURLRequest(url: NSURL(string: "http://\(btcTestnetNodeURL)/wallet/\(identifier)")! as URL,
-                                                      cachePolicy: .useProtocolCachePolicy,
-                                                      timeoutInterval: 10.0)
-                    request.httpMethod = "PUT"
-                    request.allHTTPHeaderFields = headers
-                    request.httpBody = postData as Data
-                    
-                    let session = URLSession.shared
-                    let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-                        if (error != nil) {
-                            print(error)
-                        } else {
-                            do {
-                                guard let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
-                                    print("error trying to convert data to JSON")
-                                    return
-                                }
-                                
-                                //Execute block passed in
-                                completionHandler(jsonDict)
-                            } catch {
-                                print("error trying to convert data to JSON")
-                                return
-                            }
-                        }
-                    })
-                    //Execute the call
-                    dataTask.resume()
+                    executeRequest(URL: NSURL(string: "http://\(btcTestnetNodeURL)/wallet/\(identifier)/import")! as URL,
+                                   httpMethod: "POST",
+                                   postData: "{\"privateKey\": \(key)}",
+                                   completionHandler: { (data, response, error) -> Void in
+                                        if (error != nil) {
+                                            print(error)
+                                        } else {
+                                            do {
+                                                guard let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject] else {
+                                                        print("error trying to convert data to JSON")
+                                                        return
+                                                    }
+                                            
+                                                //Execute block passed in
+                                                completionHandler(jsonDict)
+                                            } catch {
+                                                print("error trying to convert data to JSON")
+                                                return
+                                            }
+                                        }
+                                    })
                     
                 //If not, create new wallet
                 } else {
