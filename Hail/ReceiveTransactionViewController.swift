@@ -65,4 +65,5 @@ class ReceiveTransactionViewController: UIViewController, UITableViewDelegate, U
         return cell
     }
     
+    
 }
